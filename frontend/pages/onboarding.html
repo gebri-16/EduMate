@@ -183,15 +183,30 @@
         animation: fadeUp 0.4s ease 0.1s forwards;
       }
       @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(16px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
-      .step-panel { display: none; }
-      .step-panel.active { display: block; }
+      .step-panel {
+        display: none;
+      }
+      .step-panel.active {
+        display: block;
+      }
 
       /* ===== HEADER ===== */
-      .panel-header { margin-bottom: 24px; }
-      .panel-icon { font-size: 32px; margin-bottom: 12px; }
+      .panel-header {
+        margin-bottom: 24px;
+      }
+      .panel-icon {
+        font-size: 32px;
+        margin-bottom: 12px;
+      }
       .panel-title {
         font-family: "DM Serif Display", serif;
         font-size: 22px;
@@ -199,14 +214,36 @@
         color: var(--black);
         margin-bottom: 6px;
       }
-      .panel-sub { font-size: 13.5px; color: var(--gray-400); line-height: 1.6; }
+      .panel-sub {
+        font-size: 13.5px;
+        color: var(--gray-400);
+        line-height: 1.6;
+      }
 
       /* ===== FORM ===== */
-      .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-      .form-group { display: flex; flex-direction: column; gap: 6px; }
-      .form-group.full { grid-column: 1/-1; }
-      .form-label { font-size: 12px; font-weight: 600; color: var(--black); }
-      .form-hint { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .form-group.full {
+        grid-column: 1/-1;
+      }
+      .form-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--black);
+      }
+      .form-hint {
+        font-size: 11px;
+        color: var(--gray-400);
+        margin-top: 2px;
+      }
 
       .form-input,
       .form-select,
@@ -219,7 +256,9 @@
         color: var(--black);
         background: var(--gray-50);
         outline: none;
-        transition: border-color 0.15s, background 0.15s;
+        transition:
+          border-color 0.15s,
+          background 0.15s;
       }
       .form-input:focus,
       .form-select:focus,
@@ -227,8 +266,13 @@
         border-color: var(--primary);
         background: var(--white);
       }
-      .form-input::placeholder { color: var(--gray-400); }
-      .form-textarea { resize: vertical; min-height: 80px; }
+      .form-input::placeholder {
+        color: var(--gray-400);
+      }
+      .form-textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
 
       /* WhatsApp input wrapper */
       .wa-input-wrap {
@@ -276,103 +320,230 @@
         gap: 5px;
         font-weight: 500;
       }
-      .tag-remove { cursor: pointer; opacity: 0.6; font-size: 14px; line-height: 1; }
-      .tag-remove:hover { opacity: 1; }
+      .tag-remove {
+        cursor: pointer;
+        opacity: 0.6;
+        font-size: 14px;
+        line-height: 1;
+      }
+      .tag-remove:hover {
+        opacity: 1;
+      }
       .tags-input {
-        border: none; outline: none; background: transparent;
-        font-family: "DM Sans", sans-serif; font-size: 13px;
-        color: var(--black); min-width: 100px; flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-family: "DM Sans", sans-serif;
+        font-size: 13px;
+        color: var(--black);
+        min-width: 100px;
+        flex: 1;
       }
 
       /* Jadwal grid */
-      .jadwal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .jadwal-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
       .jadwal-item {
-        display: flex; align-items: center; gap: 10px;
-        padding: 10px 12px; border: 1.5px solid var(--gray-200);
-        border-radius: 10px; cursor: pointer; transition: all 0.15s;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border: 1.5px solid var(--gray-200);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.15s;
         background: var(--gray-50);
       }
-      .jadwal-item:hover { border-color: var(--primary); background: var(--primary-light); }
-      .jadwal-item.selected { border-color: var(--primary); background: var(--primary-light); }
-      .jadwal-item input[type="checkbox"] { accent-color: var(--primary); width: 15px; height: 15px; }
-      .jadwal-label { font-size: 13px; color: var(--black); }
+      .jadwal-item:hover {
+        border-color: var(--primary);
+        background: var(--primary-light);
+      }
+      .jadwal-item.selected {
+        border-color: var(--primary);
+        background: var(--primary-light);
+      }
+      .jadwal-item input[type="checkbox"] {
+        accent-color: var(--primary);
+        width: 15px;
+        height: 15px;
+      }
+      .jadwal-label {
+        font-size: 13px;
+        color: var(--black);
+      }
 
       /* Step 1 */
       .avatar-preview {
-        display: flex; flex-direction: column; align-items: center;
-        gap: 16px; margin-bottom: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
       }
       .avatar-big {
-        width: 90px; height: 90px; border-radius: 50%;
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
         border: 3px solid var(--primary);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 40px; overflow: hidden; background: var(--primary-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        overflow: hidden;
+        background: var(--primary-light);
       }
-      .avatar-big img { width: 100%; height: 100%; object-fit: cover; }
-      .avatar-info { text-align: center; }
-      .avatar-nama { font-family: "DM Serif Display", serif; font-size: 18px; margin-bottom: 3px; }
-      .avatar-email { font-size: 12px; color: var(--gray-400); }
+      .avatar-big img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .avatar-info {
+        text-align: center;
+      }
+      .avatar-nama {
+        font-family: "DM Serif Display", serif;
+        font-size: 18px;
+        margin-bottom: 3px;
+      }
+      .avatar-email {
+        font-size: 12px;
+        color: var(--gray-400);
+      }
       .welcome-text {
         background: var(--primary-light);
         border: 1px solid rgba(249, 115, 22, 0.2);
-        border-radius: 12px; padding: 16px;
-        font-size: 13.5px; color: var(--gray-600);
-        line-height: 1.6; text-align: center; margin-bottom: 24px;
+        border-radius: 12px;
+        padding: 16px;
+        font-size: 13.5px;
+        color: var(--gray-600);
+        line-height: 1.6;
+        text-align: center;
+        margin-bottom: 24px;
       }
-      .welcome-text strong { color: var(--primary); }
+      .welcome-text strong {
+        color: var(--primary);
+      }
 
       /* Actions */
       .actions {
-        display: flex; gap: 10px; justify-content: space-between;
-        margin-top: 28px; padding-top: 20px;
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        margin-top: 28px;
+        padding-top: 20px;
         border-top: 1px solid var(--gray-100);
       }
       .btn-back {
-        padding: 11px 20px; background: var(--white); color: var(--black);
-        border: 1.5px solid var(--gray-200); border-radius: 10px;
-        font-family: "DM Sans", sans-serif; font-size: 13.5px; font-weight: 500;
-        cursor: pointer; transition: all 0.15s;
+        padding: 11px 20px;
+        background: var(--white);
+        color: var(--black);
+        border: 1.5px solid var(--gray-200);
+        border-radius: 10px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 13.5px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s;
       }
-      .btn-back:hover { background: var(--gray-100); }
+      .btn-back:hover {
+        background: var(--gray-100);
+      }
       .btn-next {
-        flex: 1; padding: 11px 24px; background: var(--primary);
-        color: white; border: none; border-radius: 10px;
-        font-family: "DM Sans", sans-serif; font-size: 13.5px; font-weight: 600;
-        cursor: pointer; transition: background 0.15s;
+        flex: 1;
+        padding: 11px 24px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 13.5px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.15s;
       }
-      .btn-next:hover { background: var(--primary-hover); }
-      .btn-next:disabled { background: var(--gray-200); color: var(--gray-400); cursor: not-allowed; }
+      .btn-next:hover {
+        background: var(--primary-hover);
+      }
+      .btn-next:disabled {
+        background: var(--gray-200);
+        color: var(--gray-400);
+        cursor: not-allowed;
+      }
 
       /* Error state */
       .form-input.error,
-      .form-select.error { border-color: #dc2626; background: #fef2f2; }
+      .form-select.error {
+        border-color: #dc2626;
+        background: #fef2f2;
+      }
       /* Accordion Jadwal */
-.accordion-hari {
-  border: 1.5px solid var(--gray-200);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-.accordion-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  cursor: pointer;
-  background: var(--gray-50);
-  transition: background 0.15s;
-  user-select: none;
-}
-.accordion-header:hover { background: var(--gray-100); }
-.accordion-header.has-selected { background: var(--primary-light); border-color: var(--primary); }
-.accordion-hari.open .accordion-header { border-bottom: 1.5px solid var(--gray-200); }
-.accordion-title { font-size: 13.5px; font-weight: 600; color: var(--black); display: flex; align-items: center; gap: 8px; }
-.accordion-badge { background: var(--primary); color: white; font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 99px; display: none; }
-.accordion-badge.show { display: inline-block; }
-.accordion-arrow { font-size: 11px; color: var(--gray-400); transition: transform 0.2s; }
-.accordion-hari.open .accordion-arrow { transform: rotate(180deg); }
-.accordion-body { display: none; padding: 10px; background: white; }
-.accordion-hari.open .accordion-body { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+      .accordion-hari {
+        border: 1.5px solid var(--gray-200);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 8px;
+      }
+      .accordion-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        cursor: pointer;
+        background: var(--gray-50);
+        transition: background 0.15s;
+        user-select: none;
+      }
+      .accordion-header:hover {
+        background: var(--gray-100);
+      }
+      .accordion-header.has-selected {
+        background: var(--primary-light);
+        border-color: var(--primary);
+      }
+      .accordion-hari.open .accordion-header {
+        border-bottom: 1.5px solid var(--gray-200);
+      }
+      .accordion-title {
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--black);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .accordion-badge {
+        background: var(--primary);
+        color: white;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 1px 7px;
+        border-radius: 99px;
+        display: none;
+      }
+      .accordion-badge.show {
+        display: inline-block;
+      }
+      .accordion-arrow {
+        font-size: 11px;
+        color: var(--gray-400);
+        transition: transform 0.2s;
+      }
+      .accordion-hari.open .accordion-arrow {
+        transform: rotate(180deg);
+      }
+      .accordion-body {
+        display: none;
+        padding: 10px;
+        background: white;
+      }
+      .accordion-hari.open .accordion-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 7px;
+      }
     </style>
   </head>
   <body>
@@ -440,16 +611,32 @@
           </div>
           <div class="form-grid">
             <div class="form-group">
-              <label class="form-label">Jurusan <span style="color:#dc2626">*</span></label>
-              <input type="text" class="form-input" id="jurusan" placeholder="Contoh: Teknik Informatika" />
+              <label class="form-label"
+                >Jurusan <span style="color: #dc2626">*</span></label
+              >
+              <input
+                type="text"
+                class="form-input"
+                id="jurusan"
+                placeholder="Contoh: Teknik Informatika"
+              />
             </div>
             <div class="form-group">
-              <label class="form-label">Universitas <span style="color:#dc2626">*</span></label>
-              <input type="text" class="form-input" id="universitas" placeholder="Contoh: USU" />
+              <label class="form-label"
+                >Universitas <span style="color: #dc2626">*</span></label
+              >
+              <input
+                type="text"
+                class="form-input"
+                id="universitas"
+                placeholder="Contoh: USU"
+              />
             </div>
             <!-- FIX: Tambah field no_hp dengan ikon WhatsApp -->
             <div class="form-group full">
-              <label class="form-label">No. WhatsApp <span style="color:#dc2626">*</span></label>
+              <label class="form-label"
+                >No. WhatsApp <span style="color: #dc2626">*</span></label
+              >
               <div class="wa-input-wrap">
                 <span class="wa-icon">📱</span>
                 <input
@@ -459,7 +646,10 @@
                   placeholder="Contoh: 08123456789"
                 />
               </div>
-              <span class="form-hint">Digunakan agar teman belajar bisa menghubungimu via WhatsApp</span>
+              <span class="form-hint"
+                >Digunakan agar teman belajar bisa menghubungimu via
+                WhatsApp</span
+              >
             </div>
             <div class="form-group full">
               <label class="form-label">Bio Singkat</label>
@@ -479,39 +669,54 @@
         <!-- Step 3: Profil Belajar -->
         <div class="step-panel" id="panel3">
           <div class="panel-header">
-            <div class="panel-icon">📚</div>
+            <div class="panel-icon"><i class="bi bi-book"></i></div>
             <div class="panel-title">Profil Belajar</div>
             <div class="panel-sub">
-              Info ini digunakan untuk mencocokkanmu dengan teman belajar yang tepat.
+              Info ini digunakan untuk mencocokkanmu dengan teman belajar yang
+              tepat.
             </div>
           </div>
           <div class="form-grid">
             <div class="form-group full">
-              <label class="form-label">Skill / Mata Kuliah yang Dikuasai</label>
+              <label class="form-label"
+                >Skill / Mata Kuliah yang Dikuasai</label
+              >
               <div class="tags-wrap" id="skillWrap">
                 <input
-                  type="text" class="tags-input" id="skillInput"
+                  type="text"
+                  class="tags-input"
+                  id="skillInput"
                   placeholder="Ketik mata kuliah lalu tekan Enter..."
                   onkeydown="addTag(event, 'skillWrap', 'skillTags')"
                   onblur="addTagFromInput('skillWrap', 'skillTags')"
                 />
               </div>
-              <span class="form-hint">Contoh: Algoritma, Basis Data, Kalkulus — tekan Enter untuk menambah</span>
+              <span class="form-hint"
+                >Contoh: Algoritma, Basis Data, Kalkulus — tekan Enter untuk
+                menambah</span
+              >
             </div>
             <div class="form-group full">
               <label class="form-label">Topik yang Ingin Dipelajari</label>
               <div class="tags-wrap" id="topikWrap">
                 <input
-                  type="text" class="tags-input" id="topikInput"
+                  type="text"
+                  class="tags-input"
+                  id="topikInput"
                   placeholder="Ketik topik lalu tekan Enter..."
                   onkeydown="addTag(event, 'topikWrap', 'topikTags')"
                   onblur="addTagFromInput('topikWrap', 'topikTags')"
                 />
               </div>
-              <span class="form-hint">Contoh: Machine Learning, Web Dev — tekan Enter untuk menambah</span>
+              <span class="form-hint"
+                >Contoh: Machine Learning, Web Dev — tekan Enter untuk
+                menambah</span
+              >
             </div>
             <div class="form-group">
-              <label class="form-label">Tingkat Kemampuan <span style="color:#dc2626">*</span></label>
+              <label class="form-label"
+                >Tingkat Kemampuan <span style="color: #dc2626">*</span></label
+              >
               <select class="form-select" id="tingkat">
                 <option value="">Pilih tingkat</option>
                 <option value="Pemula">Pemula</option>
@@ -520,7 +725,9 @@
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label">Gaya Belajar <span style="color:#dc2626">*</span></label>
+              <label class="form-label"
+                >Gaya Belajar <span style="color: #dc2626">*</span></label
+              >
               <select class="form-select" id="gaya">
                 <option value="">Pilih gaya belajar</option>
                 <option value="Diskusi">Diskusi</option>
@@ -530,7 +737,9 @@
               </select>
             </div>
             <div class="form-group full">
-              <label class="form-label">Lokasi Belajar <span style="color:#dc2626">*</span></label>
+              <label class="form-label"
+                >Lokasi Belajar <span style="color: #dc2626">*</span></label
+              >
               <select class="form-select" id="lokasi">
                 <option value="">Pilih lokasi</option>
                 <option value="Perpustakaan">Perpustakaan</option>
@@ -552,7 +761,8 @@
             <div class="panel-icon">📅</div>
             <div class="panel-title">Jadwal Kosong</div>
             <div class="panel-sub">
-              Pilih waktu kosongmu agar sistem bisa mencocokkan jadwal dengan teman belajar.
+              Pilih waktu kosongmu agar sistem bisa mencocokkan jadwal dengan
+              teman belajar.
             </div>
           </div>
           <div id="jadwalAccordion"></div>
@@ -568,9 +778,10 @@
 
     <script src="../js/auth-client.js"></script>
     <script>
-      const API = window.location.hostname === 'localhost'
-        ? 'http://localhost:3000/api'
-: window.location.origin + '/api'
+      const API =
+        window.location.hostname === "localhost"
+          ? "http://localhost:3000/api"
+          : window.location.origin + "/api";
 
       let skillTags = [];
       let topikTags = [];
@@ -586,8 +797,10 @@
         const user = await fetchCurrentUser();
         currentUser = user;
         if (user) {
-          document.getElementById("onboardNama").textContent = user.nama || "Nama User";
-          document.getElementById("onboardEmail").textContent = user.email || "";
+          document.getElementById("onboardNama").textContent =
+            user.nama || "Nama User";
+          document.getElementById("onboardEmail").textContent =
+            user.email || "";
           if (user.foto) {
             document.getElementById("onboardAvatar").innerHTML =
               `<img src="${user.foto}" alt="${user.nama}" referrerpolicy="no-referrer" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
@@ -596,7 +809,9 @@
       });
 
       function goToStep(step) {
-        document.querySelectorAll(".step-panel").forEach(p => p.classList.remove("active"));
+        document
+          .querySelectorAll(".step-panel")
+          .forEach((p) => p.classList.remove("active"));
         document.getElementById(`panel${step}`).classList.add("active");
         document.querySelectorAll(".step").forEach((s, i) => {
           s.classList.remove("active", "done");
@@ -615,7 +830,9 @@
         const jurusan = document.getElementById("jurusan").value.trim();
         const universitas = document.getElementById("universitas").value.trim();
         document.getElementById("jurusan").classList.toggle("error", !jurusan);
-        document.getElementById("universitas").classList.toggle("error", !universitas);
+        document
+          .getElementById("universitas")
+          .classList.toggle("error", !universitas);
         if (!jurusan || !universitas) {
           showToast("Jurusan dan universitas wajib diisi!", "warning");
           return;
@@ -643,7 +860,10 @@
         const val = input.value.trim();
         if (!val) return;
         const existing = tagsArr === "skillTags" ? skillTags : topikTags;
-        if (existing.includes(val)) { input.value = ""; return; }
+        if (existing.includes(val)) {
+          input.value = "";
+          return;
+        }
         if (tagsArr === "skillTags") skillTags.push(val);
         else topikTags.push(val);
         renderTag(wrap, input, val, tagsArr);
@@ -666,7 +886,9 @@
         const btn = document.createElement("span");
         btn.className = "tag-remove";
         btn.textContent = "×";
-        btn.onclick = function () { removeTagEl(this.parentElement); };
+        btn.onclick = function () {
+          removeTagEl(this.parentElement);
+        };
         tag.appendChild(text);
         tag.appendChild(btn);
         wrap.insertBefore(tag, input);
@@ -675,22 +897,23 @@
       function removeTagEl(tagEl) {
         const val = tagEl.dataset.val;
         const tagsArr = tagEl.dataset.arr;
-        if (tagsArr === "skillTags") skillTags = skillTags.filter(t => t !== val);
-        else topikTags = topikTags.filter(t => t !== val);
+        if (tagsArr === "skillTags")
+          skillTags = skillTags.filter((t) => t !== val);
+        else topikTags = topikTags.filter((t) => t !== val);
         tagEl.remove();
       }
 
       function getTagsFromDOM(wrapId) {
         const wrap = document.getElementById(wrapId);
         return [...wrap.querySelectorAll(".tag-item")]
-          .map(t => t.dataset.val)
+          .map((t) => t.dataset.val)
           .filter(Boolean);
       }
 
       function toggleJadwal(cb) {
         cb.closest(".jadwal-item").classList.toggle("selected", cb.checked);
         if (cb.checked) jadwalDipilih.push(cb.value);
-        else jadwalDipilih = jadwalDipilih.filter(j => j !== cb.value);
+        else jadwalDipilih = jadwalDipilih.filter((j) => j !== cb.value);
       }
 
       async function submitOnboarding() {
@@ -723,7 +946,9 @@
               body: JSON.stringify({
                 nama: currentUser.nama,
                 jurusan: document.getElementById("jurusan").value.trim(),
-                universitas: document.getElementById("universitas").value.trim(),
+                universitas: document
+                  .getElementById("universitas")
+                  .value.trim(),
                 bio: document.getElementById("bio").value.trim(),
                 // FIX: Kirim no_hp dari step 2
                 no_hp: document.getElementById("no_hp").value.trim(),
@@ -757,18 +982,29 @@
           const [d1, d2, d3] = await Promise.all([
             r1.json(),
             r2.json(),
-            r3.json().catch(() => ({ success: false, message: 'Gagal parse response jadwal' })),
+            r3
+              .json()
+              .catch(() => ({
+                success: false,
+                message: "Gagal parse response jadwal",
+              })),
           ]);
 
           // FIX: Cek error dari ketiga request termasuk jadwal
           if (!d1.success) {
-            showToast("Gagal simpan profil: " + (d1.message || "Error"), "error");
+            showToast(
+              "Gagal simpan profil: " + (d1.message || "Error"),
+              "error",
+            );
             btn.textContent = "Selesai & Masuk Dashboard 🎉";
             btn.disabled = false;
             return;
           }
           if (!d2.success) {
-            showToast("Gagal simpan profil belajar: " + (d2.message || "Error"), "error");
+            showToast(
+              "Gagal simpan profil belajar: " + (d2.message || "Error"),
+              "error",
+            );
             btn.textContent = "Selesai & Masuk Dashboard 🎉";
             btn.disabled = false;
             return;
@@ -777,15 +1013,21 @@
             // Jadwal gagal tapi profil sudah tersimpan — tetap lanjut ke dashboard
             // tapi tampilkan warning agar user tahu jadwal perlu diisi ulang di halaman jadwal
             console.warn("Jadwal gagal tersimpan:", d3.message);
-            showToast("Profil tersimpan, tapi jadwal gagal. Atur ulang di halaman Jadwal.", "warning", 5000);
+            showToast(
+              "Profil tersimpan, tapi jadwal gagal. Atur ulang di halaman Jadwal.",
+              "warning",
+              5000,
+            );
           } else {
             showToast("Profil berhasil disimpan! 🎉", "success");
           }
 
-          setTimeout(() => {
-            window.location.href = "/pages/dashboard.html";
-          }, d3.success ? 1000 : 2500);
-
+          setTimeout(
+            () => {
+              window.location.href = "/pages/dashboard.html";
+            },
+            d3.success ? 1000 : 2500,
+          );
         } catch (err) {
           console.error("submitOnboarding error:", err);
           showToast("Gagal menyimpan profil. Coba lagi!", "error");
@@ -793,18 +1035,35 @@
           btn.disabled = false;
         }
       }
-      const HARI_LIST = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'];
-const SESI_LIST = [
-  { emoji: '☀️', label: 'Pagi' },
-  { emoji: '🌞', label: 'Siang' },
-  { emoji: '🌤️', label: 'Sore' },
-  { emoji: '🌙', label: 'Malam' },
-];
-const HARI_EMOJI = { Senin:'📅', Selasa:'📅', Rabu:'📅', Kamis:'📅', Jumat:'📅', Sabtu:'🎉', Minggu:'🎉' };
+      const HARI_LIST = [
+        "Senin",
+        "Selasa",
+        "Rabu",
+        "Kamis",
+        "Jumat",
+        "Sabtu",
+        "Minggu",
+      ];
+      const SESI_LIST = [
+        { emoji: "☀️", label: "Pagi" },
+        { emoji: "🌞", label: "Siang" },
+        { emoji: "🌤️", label: "Sore" },
+        { emoji: "🌙", label: "Malam" },
+      ];
+      const HARI_EMOJI = {
+        Senin: "📅",
+        Selasa: "📅",
+        Rabu: "📅",
+        Kamis: "📅",
+        Jumat: "📅",
+        Sabtu: "🎉",
+        Minggu: "🎉",
+      };
 
-function buildAccordion(containerId) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = HARI_LIST.map(hari => `
+      function buildAccordion(containerId) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = HARI_LIST.map(
+          (hari) => `
     <div class="accordion-hari" id="acc-${containerId}-${hari}">
       <div class="accordion-header" onclick="toggleAcc('${containerId}','${hari}')">
         <div class="accordion-title">
@@ -814,44 +1073,49 @@ function buildAccordion(containerId) {
         <span class="accordion-arrow">▼</span>
       </div>
       <div class="accordion-body">
-        ${SESI_LIST.map(s => `
+        ${SESI_LIST.map(
+          (s) => `
           <label class="jadwal-item">
             <input type="checkbox" value="${hari} ${s.label}" onchange="toggleJadwal(this,'${containerId}','${hari}')"/>
             <span class="jadwal-label">${s.emoji} ${s.label}</span>
           </label>
-        `).join('')}
+        `,
+        ).join("")}
       </div>
     </div>
-  `).join('');
-}
+  `,
+        ).join("");
+      }
 
-function toggleAcc(containerId, hari) {
-  const el = document.getElementById(`acc-${containerId}-${hari}`);
-  el.classList.toggle('open');
-}
+      function toggleAcc(containerId, hari) {
+        const el = document.getElementById(`acc-${containerId}-${hari}`);
+        el.classList.toggle("open");
+      }
 
-function updateBadge(containerId, hari) {
-  const acc = document.getElementById(`acc-${containerId}-${hari}`);
-  const checked = acc.querySelectorAll('input[type="checkbox"]:checked').length;
-  const badge = document.getElementById(`badge-${containerId}-${hari}`);
-  const header = acc.querySelector('.accordion-header');
-  badge.textContent = checked;
-  badge.classList.toggle('show', checked > 0);
-  header.classList.toggle('has-selected', checked > 0);
-}
+      function updateBadge(containerId, hari) {
+        const acc = document.getElementById(`acc-${containerId}-${hari}`);
+        const checked = acc.querySelectorAll(
+          'input[type="checkbox"]:checked',
+        ).length;
+        const badge = document.getElementById(`badge-${containerId}-${hari}`);
+        const header = acc.querySelector(".accordion-header");
+        badge.textContent = checked;
+        badge.classList.toggle("show", checked > 0);
+        header.classList.toggle("has-selected", checked > 0);
+      }
 
-// Override toggleJadwal untuk onboarding
-function toggleJadwal(cb, containerId, hari) {
-  cb.closest('.jadwal-item').classList.toggle('selected', cb.checked);
-  if (cb.checked) jadwalDipilih.push(cb.value);
-  else jadwalDipilih = jadwalDipilih.filter(j => j !== cb.value);
-  updateBadge(containerId, hari);
-}
+      // Override toggleJadwal untuk onboarding
+      function toggleJadwal(cb, containerId, hari) {
+        cb.closest(".jadwal-item").classList.toggle("selected", cb.checked);
+        if (cb.checked) jadwalDipilih.push(cb.value);
+        else jadwalDipilih = jadwalDipilih.filter((j) => j !== cb.value);
+        updateBadge(containerId, hari);
+      }
 
-// Build saat halaman load
-document.addEventListener('DOMContentLoaded', () => {
-  buildAccordion('jadwalAccordion');
-});
+      // Build saat halaman load
+      document.addEventListener("DOMContentLoaded", () => {
+        buildAccordion("jadwalAccordion");
+      });
     </script>
   </body>
 </html>
