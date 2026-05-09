@@ -12,7 +12,10 @@ app.set('trust proxy', 1);
 require("./scheduler");
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['https://edu-mate-fx6a.vercel.app', 'http://localhost:3000'],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
