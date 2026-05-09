@@ -7,45 +7,42 @@ passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: (process.env.NEXTAUTH_URL || 'http://localhost:3000').replace(/\/$/, '') + '/api/auth/google/callback',
-  passReqToCallback: true  // FIX: aktifkan agar req tersedia di callback
+  passReqToCallback: true
 },
-// FIX: tambahkan req sebagai parameter pertama
-(req, accessToken, refreshToken, profile, done) => {
+async (req, accessToken, refreshToken, profile, done) => {
   const email = profile.emails[0].value;
   const nama = profile.displayName;
   const foto = profile.photos[0].value;
 
-  // Cek apakah user sudah ada di database
-  db.query('SELECT * FROM users WHERE email = ?', [email], (err, result) => {
-    if (err) return done(err);
+  try {
+    // Cek apakah user sudah ada di database
+    const result = await db.query('SELECT * FROM _users WHERE email = $1', [email]);
 
-    if (result.length > 0) {
+    if (result.rows.length > 0) {
       // User sudah ada, langsung login
-      return done(null, result[0]);
+      return done(null, result.rows[0]);
     } else {
       // User belum ada, buat akun baru
-      db.query(
-        'INSERT INTO users (nama, email, foto) VALUES (?, ?, ?)',
-        [nama, email, foto],
-        (err, newUser) => {
-          if (err) return done(err);
-          db.query('SELECT * FROM users WHERE id = ?', [newUser.insertId], (err, user) => {
-            if (err) return done(err);
-            return done(null, user[0]);
-          });
-        }
+      const newUser = await db.query(
+        'INSERT INTO _users (nama, email, foto) VALUES ($1, $2, $3) RETURNING *',
+        [nama, email, foto]
       );
+      return done(null, newUser.rows[0]);
     }
-  });
+  } catch (err) {
+    return done(err);
+  }
 }));
 
 passport.serializeUser((user, done) => done(null, user.id));
 
-passport.deserializeUser((id, done) => {
-  db.query('SELECT * FROM users WHERE id = ?', [id], (err, result) => {
-    if (err) return done(err);
-    done(null, result[0]);
-  });
+passport.deserializeUser(async (id, done) => {
+  try {
+    const result = await db.query('SELECT * FROM _users WHERE id = $1', [id]);
+    done(null, result.rows[0]);
+  } catch (err) {
+    done(err);
+  }
 });
 
 module.exports = passport;

@@ -34,37 +34,51 @@ const jadwalMap = {
   'Minggu Malam':   { hari: 'Minggu',  jam_mulai: '18:00:00', jam_selesai: '22:00:00' },
 };
 
+// Urutan hari untuk sorting manual (pengganti FIELD() MySQL)
+const hariOrder = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'];
+
 // ==================== GET /api/jadwal ====================
-router.get('/', verifyToken, (req, res) => {
+router.get('/', verifyToken, async (req, res) => {
   const userId = req.user.id;
-  db.query(
-    'SELECT * FROM jadwal_kosong WHERE user_id = ? ORDER BY FIELD(hari,"Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"), jam_mulai',
-    [userId],
-    (err, results) => {
-      if (err) return res.status(500).json({ success: false, message: 'Gagal ambil jadwal' });
-      res.json({ success: true, jadwal: results });
-    }
-  );
+  try {
+    const results = await db.query(
+      'SELECT * FROM _jadwal_kosong WHERE user_id = $1 ORDER BY jam_mulai',
+      [userId]
+    );
+    // Sort by hari order
+    const sorted = results.rows.sort((a, b) =>
+      hariOrder.indexOf(a.hari) - hariOrder.indexOf(b.hari) ||
+      a.jam_mulai.localeCompare(b.jam_mulai)
+    );
+    res.json({ success: true, jadwal: sorted });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Gagal ambil jadwal' });
+  }
 });
 
 // ==================== GET /api/jadwal/user/:id ====================
-router.get('/user/:id', verifyToken, (req, res) => {
+router.get('/user/:id', verifyToken, async (req, res) => {
   const targetId = parseInt(req.params.id);
   if (!targetId || isNaN(targetId))
     return res.status(400).json({ success: false, message: 'ID tidak valid' });
 
-  db.query(
-    'SELECT hari, jam_mulai, jam_selesai FROM jadwal_kosong WHERE user_id = ? ORDER BY FIELD(hari,"Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"), jam_mulai',
-    [targetId],
-    (err, results) => {
-      if (err) return res.status(500).json({ success: false, message: 'Gagal ambil jadwal' });
-      res.json({ success: true, jadwal: results });
-    }
-  );
+  try {
+    const results = await db.query(
+      'SELECT hari, jam_mulai, jam_selesai FROM _jadwal_kosong WHERE user_id = $1 ORDER BY jam_mulai',
+      [targetId]
+    );
+    const sorted = results.rows.sort((a, b) =>
+      hariOrder.indexOf(a.hari) - hariOrder.indexOf(b.hari) ||
+      a.jam_mulai.localeCompare(b.jam_mulai)
+    );
+    res.json({ success: true, jadwal: sorted });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Gagal ambil jadwal' });
+  }
 });
 
 // ==================== POST /api/jadwal ====================
-router.post('/', verifyToken, (req, res) => {
+router.post('/', verifyToken, async (req, res) => {
   const userId = req.user.id;
   const { hari, jam_mulai, jam_selesai, jadwal, replace } = req.body;
 
@@ -78,22 +92,22 @@ router.post('/', verifyToken, (req, res) => {
     const selesai = jam_selesai.length === 5 ? jam_selesai + ':00' : jam_selesai;
     const values  = [[userId, hari, mulai, selesai]];
 
-    if (replace === true) {
-      db.query('DELETE FROM jadwal_kosong WHERE user_id = ?', [userId], (err) => {
-        if (err) return res.status(500).json({ success: false, message: 'Gagal hapus jadwal lama' });
-        insertJadwal(values, res);
-      });
-    } else {
-      db.query(
-        'SELECT id FROM jadwal_kosong WHERE user_id = ? AND hari = ? AND jam_mulai = ?',
-        [userId, hari, mulai],
-        (err, existing) => {
-          if (err) return res.status(500).json({ success: false, message: 'Gagal cek jadwal' });
-          if (existing.length > 0)
-            return res.json({ success: true, message: 'Jadwal sudah ada' });
-          insertJadwal(values, res);
-        }
-      );
+    try {
+      if (replace === true) {
+        await db.query('DELETE FROM _jadwal_kosong WHERE user_id = $1', [userId]);
+        await insertJadwal(values);
+      } else {
+        const existing = await db.query(
+          'SELECT id FROM _jadwal_kosong WHERE user_id = $1 AND hari = $2 AND jam_mulai = $3',
+          [userId, hari, mulai]
+        );
+        if (existing.rows.length > 0)
+          return res.json({ success: true, message: 'Jadwal sudah ada' });
+        await insertJadwal(values);
+      }
+      res.json({ success: true, message: 'Jadwal berhasil disimpan' });
+    } catch (err) {
+      res.status(500).json({ success: false, message: 'Gagal simpan jadwal', error: err.message });
     }
     return;
   }
@@ -109,53 +123,53 @@ router.post('/', verifyToken, (req, res) => {
   if (values2.length === 0)
     return res.status(400).json({ success: false, message: 'Jadwal tidak valid' });
 
-  if (replace === true) {
-    db.query('DELETE FROM jadwal_kosong WHERE user_id = ?', [userId], (err) => {
-      if (err) return res.status(500).json({ success: false, message: 'Gagal hapus jadwal lama' });
-      insertJadwal(values2, res);
-    });
-  } else {
-    db.query(
-      'SELECT hari, jam_mulai FROM jadwal_kosong WHERE user_id = ?',
-      [userId],
-      (err, existing) => {
-        if (err) return res.status(500).json({ success: false, message: 'Gagal cek jadwal' });
-        const existingSet = new Set(existing.map(e => `${e.hari}_${e.jam_mulai}`));
-        const newValues   = values2.filter(v => !existingSet.has(`${v[1]}_${v[2]}`));
-        if (newValues.length === 0)
-          return res.json({ success: true, message: 'Jadwal sudah ada' });
-        insertJadwal(newValues, res);
-      }
-    );
+  try {
+    if (replace === true) {
+      await db.query('DELETE FROM _jadwal_kosong WHERE user_id = $1', [userId]);
+      await insertJadwal(values2);
+    } else {
+      const existing = await db.query(
+        'SELECT hari, jam_mulai FROM _jadwal_kosong WHERE user_id = $1',
+        [userId]
+      );
+      const existingSet = new Set(existing.rows.map(e => `${e.hari}_${e.jam_mulai}`));
+      const newValues   = values2.filter(v => !existingSet.has(`${v[1]}_${v[2]}`));
+      if (newValues.length === 0)
+        return res.json({ success: true, message: 'Jadwal sudah ada' });
+      await insertJadwal(newValues);
+    }
+    res.json({ success: true, message: 'Jadwal berhasil disimpan' });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Gagal simpan jadwal', error: err.message });
   }
 });
 
 // ==================== DELETE /api/jadwal/:id ====================
-router.delete('/:id', verifyToken, (req, res) => {
+router.delete('/:id', verifyToken, async (req, res) => {
   const { id } = req.params;
   const userId = req.user.id;
 
-  db.query(
-    'DELETE FROM jadwal_kosong WHERE id = ? AND user_id = ?',
-    [id, userId],
-    (err, result) => {
-      if (err) return res.status(500).json({ success: false, message: 'Gagal hapus jadwal' });
-      if (result.affectedRows === 0) return res.status(404).json({ success: false, message: 'Jadwal tidak ditemukan' });
-      res.json({ success: true, message: 'Jadwal berhasil dihapus' });
-    }
-  );
+  try {
+    const result = await db.query(
+      'DELETE FROM _jadwal_kosong WHERE id = $1 AND user_id = $2',
+      [id, userId]
+    );
+    if (result.rowCount === 0)
+      return res.status(404).json({ success: false, message: 'Jadwal tidak ditemukan' });
+    res.json({ success: true, message: 'Jadwal berhasil dihapus' });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Gagal hapus jadwal' });
+  }
 });
 
 // ==================== HELPER ====================
-function insertJadwal(values, res) {
-  db.query(
-    'INSERT INTO jadwal_kosong (user_id, hari, jam_mulai, jam_selesai) VALUES ?',
-    [values],
-    (err) => {
-      if (err) return res.status(500).json({ success: false, message: 'Gagal simpan jadwal', error: err.message });
-      res.json({ success: true, message: 'Jadwal berhasil disimpan' });
-    }
-  );
+async function insertJadwal(values) {
+  for (const v of values) {
+    await db.query(
+      'INSERT INTO _jadwal_kosong (user_id, hari, jam_mulai, jam_selesai) VALUES ($1, $2, $3, $4)',
+      v
+    );
+  }
 }
 
 module.exports = router;

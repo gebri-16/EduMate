@@ -88,9 +88,7 @@
         overflow-y: auto;
         scrollbar-width: none;
       }
-      .nav-section::-webkit-scrollbar {
-        display: none;
-      }
+      .nav-section::-webkit-scrollbar { display: none; }
       .nav-label {
         font-size: 9.5px;
         font-weight: 700;
@@ -116,834 +114,211 @@
         position: relative;
         margin-bottom: 1px;
       }
-      .nav-item:hover {
-        background: var(--gray-100);
-        color: var(--black);
-      }
-      .nav-item.active {
-        background: var(--gray-100);
-        color: var(--black);
-        font-weight: 500;
-      }
+      .nav-item:hover { background: var(--gray-100); color: var(--black); }
+      .nav-item.active { background: var(--gray-100); color: var(--black); font-weight: 500; }
       .nav-item.active::before {
         content: "";
         position: absolute;
-        left: 0;
-        top: 7px;
-        bottom: 7px;
+        left: 0; top: 7px; bottom: 7px;
         width: 3px;
         background: var(--primary);
         border-radius: 0 3px 3px 0;
       }
       .nav-icon {
-        width: 20px;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        opacity: 0.45;
-        transition: opacity 0.12s;
+        width: 20px; height: 20px;
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0; opacity: 0.45; transition: opacity 0.12s;
       }
-      .nav-item:hover .nav-icon,
-      .nav-item.active .nav-icon {
-        opacity: 1;
-      }
-      .nav-icon svg {
-        width: 17px;
-        height: 17px;
-        stroke-width: 1.75;
-      }
+      .nav-item:hover .nav-icon, .nav-item.active .nav-icon { opacity: 1; }
+      .nav-icon svg { width: 17px; height: 17px; stroke-width: 1.75; }
       .nav-badge {
         margin-left: auto;
-        background: var(--primary);
-        color: white;
-        font-size: 10px;
-        font-weight: 700;
-        padding: 2px 7px;
-        border-radius: 99px;
-        min-width: 18px;
-        text-align: center;
-        display: none;
+        background: var(--primary); color: white;
+        font-size: 10px; font-weight: 700;
+        padding: 2px 7px; border-radius: 99px;
+        min-width: 18px; text-align: center; display: none;
       }
-      .nav-divider {
-        height: 1px;
-        background: var(--gray-100);
-        margin: 2px 12px;
-      }
+      .nav-divider { height: 1px; background: var(--gray-100); margin: 2px 12px; }
       .sidebar-footer {
         flex-shrink: 0;
         border-top: 1px solid var(--gray-100);
         padding: 14px 10px;
       }
       .sidebar-user {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 12px;
-        border-radius: 9px;
-        cursor: pointer;
-        transition: background 0.12s;
-        text-decoration: none;
+        display: flex; align-items: center; gap: 10px;
+        padding: 12px; border-radius: 9px;
+        cursor: pointer; transition: background 0.12s; text-decoration: none;
       }
-      .sidebar-user:hover {
-        background: var(--gray-100);
-      }
+      .sidebar-user:hover { background: var(--gray-100); }
       .user-avatar {
-        width: 34px;
-        height: 34px;
-        border-radius: 50%;
+        width: 34px; height: 34px; border-radius: 50%;
         background: var(--primary-light);
         border: 1.5px solid var(--primary-mid);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 13px;
-        flex-shrink: 0;
-        overflow: hidden;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 13px; flex-shrink: 0; overflow: hidden;
       }
-      .user-avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-      }
-      .user-info {
-        flex: 1;
-        min-width: 0;
-      }
-      .user-name {
-        font-size: 13.5px;
-        font-weight: 600;
-        color: var(--black);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .user-email {
-        font-size: 11.5px;
-        color: var(--gray-400);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
+      .user-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+      .user-info { flex: 1; min-width: 0; }
+      .user-name { font-size: 13.5px; font-weight: 600; color: var(--black); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .user-email { font-size: 11.5px; color: var(--gray-400); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
       /* ===== MAIN ===== */
-      .main {
-        margin-left: var(--sidebar-width);
-        flex: 1;
-        padding: 40px 48px;
-      }
+      .main { margin-left: var(--sidebar-width); flex: 1; padding: 40px 48px; }
 
       @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(14px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(14px); }
+        to { opacity: 1; transform: translateY(0); }
       }
-      .anim-1 {
-        opacity: 0;
-        animation: fadeUp 0.5s ease 0.05s forwards;
-      }
-      .anim-2 {
-        opacity: 0;
-        animation: fadeUp 0.5s ease 0.12s forwards;
-      }
+      .anim-1 { opacity: 0; animation: fadeUp 0.5s ease 0.05s forwards; }
+      .anim-2 { opacity: 0; animation: fadeUp 0.5s ease 0.12s forwards; }
 
-      /* ===== PAGE HEADER ===== */
-      .page-header {
-        margin-bottom: 32px;
-      }
-      .page-header h1 {
-        font-family: "DM Serif Display", serif;
-        font-size: 36px;
-        color: var(--black);
-        letter-spacing: -1px;
-        margin-bottom: 6px;
-        line-height: 1.1;
-      }
-      .page-header p {
-        color: var(--gray-400);
-        font-size: 14px;
-      }
+      .page-header { margin-bottom: 32px; }
+      .page-header h1 { font-family: "DM Serif Display", serif; font-size: 36px; color: var(--black); letter-spacing: -1px; margin-bottom: 6px; line-height: 1.1; }
+      .page-header p { color: var(--gray-400); font-size: 14px; }
 
-      /* ===== LAYOUT ===== */
-      .profil-layout {
-        display: grid;
-        grid-template-columns: 288px 1fr;
-        gap: 24px;
-        align-items: start;
-      }
-      .profil-layout > div:first-child {
-        position: sticky;
-        top: 40px;
-        align-self: start;
-      }
+      .profil-layout { display: grid; grid-template-columns: 288px 1fr; gap: 24px; align-items: start; }
+      .profil-layout > div:first-child { position: sticky; top: 40px; align-self: start; }
 
-      /* ===== CARD ===== */
-      .card {
-        background: var(--white);
-        border: 1px solid var(--gray-200);
-        border-radius: var(--radius-lg);
-        overflow: hidden;
-        margin-bottom: 16px;
-      }
-      .card:last-child {
-        margin-bottom: 0;
-      }
+      .card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 16px; }
+      .card:last-child { margin-bottom: 0; }
+      .card-head { padding: 16px 22px; border-bottom: 1px solid var(--gray-100); display: flex; align-items: center; justify-content: space-between; }
+      .card-title { font-size: 13.5px; font-weight: 600; color: var(--black); }
+      .card-body { padding: 22px; }
+      .card-body.compact { padding: 16px 22px; }
 
-      .card-head {
-        padding: 16px 22px;
-        border-bottom: 1px solid var(--gray-100);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .card-title {
-        font-size: 13.5px;
-        font-weight: 600;
-        color: var(--black);
-      }
-      .card-body {
-        padding: 22px;
-      }
-      .card-body.compact {
-        padding: 16px 22px;
-      }
+      .profile-hero { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 16px; }
+      .profile-hero-top { background: linear-gradient(135deg, #0a0a0a 0%, #1c1c1c 100%); padding: 28px 22px 24px; position: relative; overflow: hidden; }
+      .profile-hero-top::before { content: ""; position: absolute; top: -40px; right: -20px; width: 130px; height: 130px; background: radial-gradient(circle, rgba(249,115,22,0.25) 0%, transparent 70%); border-radius: 50%; }
+      .profile-hero-top::after { content: ""; position: absolute; bottom: -30px; left: 10px; width: 90px; height: 90px; background: radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%); border-radius: 50%; }
+      .profile-avatar-lg { width: 72px; height: 72px; border-radius: 50%; background: var(--primary-light); border: 2.5px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 14px; overflow: hidden; position: relative; z-index: 1; }
+      .profile-avatar-lg img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+      .profil-nama { font-family: "DM Serif Display", serif; font-size: 19px; color: white; letter-spacing: -0.3px; margin-bottom: 2px; position: relative; z-index: 1; }
+      .profil-email { font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 14px; position: relative; z-index: 1; }
+      .profil-tags { display: flex; flex-wrap: wrap; gap: 5px; position: relative; z-index: 1; }
+      .ptag { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 99px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.15); }
+      .ptag.orange { background: rgba(249,115,22,0.2); color: #fdba74; border-color: rgba(249,115,22,0.3); }
+      .profile-hero-body { padding: 18px 22px; }
 
-      /* ===== KOLOM KIRI ===== */
+      .btn-wa { display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; padding: 10px; background: var(--green-light); color: var(--green); border: 1.5px solid var(--green-mid); border-radius: var(--radius-sm); font-family: "DM Sans", sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.15s; margin-bottom: 8px; }
+      .btn-wa:hover { background: var(--green); color: white; border-color: var(--green); }
 
-      /* Profile hero card */
-      .profile-hero {
-        background: var(--white);
-        border: 1px solid var(--gray-200);
-        border-radius: var(--radius-lg);
-        overflow: hidden;
-        margin-bottom: 16px;
-      }
+      .stats-mini { display: flex; flex-direction: column; gap: 6px; }
+      .stat-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 12px; background: var(--gray-50); border-radius: var(--radius-sm); border: 1px solid var(--gray-100); }
+      .stat-row-label { font-size: 12px; color: var(--gray-600); display: flex; align-items: center; gap: 7px; }
+      .stat-row-value { font-size: 13px; font-weight: 700; color: var(--black); }
 
-      .profile-hero-top {
-        background: linear-gradient(135deg, #0a0a0a 0%, #1c1c1c 100%);
-        padding: 28px 22px 24px;
-        position: relative;
-        overflow: hidden;
-      }
+      .btn-logout { display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; padding: 10px; background: transparent; color: var(--gray-400); border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm); font-family: "Poppins", sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; margin-top: 8px; }
+      .btn-logout:hover { background: #fee2e2; color: #dc2626; border-color: #fecaca; }
 
-      .profile-hero-top::before {
-        content: "";
-        position: absolute;
-        top: -40px;
-        right: -20px;
-        width: 130px;
-        height: 130px;
-        background: radial-gradient(
-          circle,
-          rgba(249, 115, 22, 0.25) 0%,
-          transparent 70%
-        );
-        border-radius: 50%;
-      }
-      .profile-hero-top::after {
-        content: "";
-        position: absolute;
-        bottom: -30px;
-        left: 10px;
-        width: 90px;
-        height: 90px;
-        background: radial-gradient(
-          circle,
-          rgba(249, 115, 22, 0.12) 0%,
-          transparent 70%
-        );
-        border-radius: 50%;
-      }
+      .rating-item { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--gray-100); }
+      .rating-item:last-child { border-bottom: none; padding-bottom: 0; }
+      .rating-item:first-child { padding-top: 0; }
+      .rating-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--primary-light); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; overflow: hidden; }
+      .rating-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+      .rating-name { font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 2px; }
+      .rating-stars { color: var(--primary); font-size: 12px; margin-bottom: 3px; letter-spacing: 1px; }
+      .rating-text { font-size: 12px; color: var(--gray-600); line-height: 1.5; }
+      .rating-date { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+      .empty-hint { text-align: center; color: var(--gray-400); font-size: 13px; padding: 20px 0; }
 
-      .profile-avatar-lg {
-        width: 72px;
-        height: 72px;
-        border-radius: 50%;
-        background: var(--primary-light);
-        border: 2.5px solid rgba(255, 255, 255, 0.15);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 32px;
-        margin-bottom: 14px;
-        overflow: hidden;
-        position: relative;
-        z-index: 1;
-      }
-      .profile-avatar-lg img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-      }
+      .section-label { font-size: 10.5px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+      .section-label::after { content: ""; flex: 1; height: 1px; background: var(--gray-200); }
 
-      .profil-nama {
-        font-family: "DM Serif Display", serif;
-        font-size: 19px;
-        color: white;
-        letter-spacing: -0.3px;
-        margin-bottom: 2px;
-        position: relative;
-        z-index: 1;
-      }
-      .profil-email {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.45);
-        margin-bottom: 14px;
-        position: relative;
-        z-index: 1;
-      }
+      .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      .form-group { display: flex; flex-direction: column; gap: 5px; }
+      .form-group.full { grid-column: 1 / -1; }
+      .form-label { font-size: 11px; font-weight: 600; color: var(--black); text-transform: uppercase; letter-spacing: 0.4px; }
+      .form-hint { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
 
-      .profil-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px;
-        position: relative;
-        z-index: 1;
-      }
-      .ptag {
-        font-size: 11px;
-        font-weight: 500;
-        padding: 3px 9px;
-        border-radius: 99px;
-        background: rgba(255, 255, 255, 0.1);
-        color: rgba(255, 255, 255, 0.7);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-      }
-      .ptag.orange {
-        background: rgba(249, 115, 22, 0.2);
-        color: #fdba74;
-        border-color: rgba(249, 115, 22, 0.3);
-      }
+      .form-input, .form-select, .form-textarea { padding: 10px 13px; border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm); font-family: "DM Sans", sans-serif; font-size: 13.5px; color: var(--black); background: var(--gray-50); outline: none; transition: border-color 0.15s, background 0.15s; }
+      .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--primary); background: var(--white); }
+      .form-input:disabled { opacity: 0.5; cursor: not-allowed; }
+      .form-input.error, .form-select.error { border-color: #dc2626; background: #fef2f2; }
+      .form-textarea { resize: vertical; min-height: 88px; }
 
-      .profile-hero-body {
-        padding: 18px 22px;
-      }
+      .hp-input-wrap { position: relative; display: flex; align-items: center; }
+      .hp-input-wrap .hp-icon { position: absolute; left: 12px; font-size: 14px; pointer-events: none; }
+      .hp-input-wrap .form-input { padding-left: 34px; }
 
-      /* WA button */
-      .btn-wa {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 7px;
-        width: 100%;
-        padding: 10px;
-        background: var(--green-light);
-        color: var(--green);
-        border: 1.5px solid var(--green-mid);
-        border-radius: var(--radius-sm);
-        font-family: "DM Sans", sans-serif;
-        font-size: 13px;
-        font-weight: 600;
-        cursor: pointer;
-        text-decoration: none;
-        transition: all 0.15s;
-        margin-bottom: 8px;
-      }
-      .btn-wa:hover {
-        background: var(--green);
-        color: white;
-        border-color: var(--green);
-      }
+      .tags-input-wrap { border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm); background: var(--gray-50); padding: 8px 12px; display: flex; flex-wrap: wrap; gap: 6px; min-height: 44px; align-items: center; transition: border-color 0.15s; cursor: text; }
+      .tags-input-wrap:focus-within { border-color: var(--primary); background: var(--white); }
+      .tag-item { background: var(--black); color: white; font-size: 12px; padding: 3px 8px; border-radius: 99px; font-weight: 500; display: flex; align-items: center; gap: 5px; }
+      .tag-remove { cursor: pointer; font-size: 13px; line-height: 1; opacity: 0.6; }
+      .tag-remove:hover { opacity: 1; }
+      .tags-input { border: none; outline: none; background: transparent; font-family: "DM Sans", sans-serif; font-size: 13px; color: var(--black); min-width: 80px; flex: 1; }
 
-      /* Stats mini */
-      .stats-mini {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-      }
-      .stat-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 9px 12px;
-        background: var(--gray-50);
-        border-radius: var(--radius-sm);
-        border: 1px solid var(--gray-100);
-      }
-      .stat-row-label {
-        font-size: 12px;
-        color: var(--gray-600);
-        display: flex;
-        align-items: center;
-        gap: 7px;
-      }
-      .stat-row-value {
-        font-size: 13px;
-        font-weight: 700;
-        color: var(--black);
-      }
+      .jadwal-item { display: flex; align-items: center; gap: 9px; padding: 9px 12px; border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm); cursor: pointer; transition: all 0.12s; background: var(--gray-50); }
+      .jadwal-item:hover { border-color: var(--primary); background: var(--primary-light); }
+      .jadwal-item.selected { border-color: var(--primary); background: var(--primary-light); }
+      .jadwal-item input[type="checkbox"] { accent-color: var(--primary); width: 14px; height: 14px; cursor: pointer; flex-shrink: 0; }
+      .jadwal-label { font-size: 12.5px; color: var(--black); cursor: pointer; }
 
-      /* Logout */
-      .btn-logout {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 7px;
-        width: 100%;
-        padding: 10px;
-        background: transparent;
-        color: var(--gray-400);
-        border: 1.5px solid var(--gray-200);
-        border-radius: var(--radius-sm);
-        font-family: "Poppins", sans-serif;
-        font-size: 13px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.15s;
-        margin-top: 8px;
-      }
-      .btn-logout:hover {
-        background: #fee2e2;
-        color: #dc2626;
-        border-color: #fecaca;
-      }
+      .form-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--gray-100); }
+      .btn-save { padding: 10px 24px; background: var(--black); color: white; border: none; border-radius: var(--radius-sm); font-family: "DM Sans", sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+      .btn-save:hover { background: var(--primary); }
+      .btn-save:disabled { background: var(--gray-300); cursor: not-allowed; }
+      .btn-cancel { padding: 10px 18px; background: var(--gray-100); color: var(--black); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); font-family: "DM Sans", sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
+      .btn-cancel:hover { background: var(--gray-200); }
 
-      /* Rating mini */
-      .rating-item {
-        display: flex;
-        gap: 12px;
-        padding: 14px 0;
-        border-bottom: 1px solid var(--gray-100);
-      }
-      .rating-item:last-child {
-        border-bottom: none;
-        padding-bottom: 0;
-      }
-      .rating-item:first-child {
-        padding-top: 0;
-      }
-      .rating-avatar {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: var(--primary-light);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 15px;
-        flex-shrink: 0;
-        overflow: hidden;
-      }
-      .rating-avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-      }
-      .rating-name {
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--black);
-        margin-bottom: 2px;
-      }
-      .rating-stars {
-        color: var(--primary);
-        font-size: 12px;
-        margin-bottom: 3px;
-        letter-spacing: 1px;
-      }
-      .rating-text {
-        font-size: 12px;
-        color: var(--gray-600);
-        line-height: 1.5;
-      }
-      .rating-date {
-        font-size: 11px;
-        color: var(--gray-400);
-        margin-top: 2px;
-      }
-      .empty-hint {
-        text-align: center;
-        color: var(--gray-400);
-        font-size: 13px;
-        padding: 20px 0;
-      }
-
-      /* ===== KOLOM KANAN ===== */
-
-      /* Section divider label */
-      .section-label {
-        font-size: 10.5px;
-        font-weight: 700;
-        color: var(--gray-400);
-        text-transform: uppercase;
-        letter-spacing: 0.8px;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .section-label::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: var(--gray-200);
-      }
-
-      /* Form */
-      .form-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-      }
-      .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-      }
-      .form-group.full {
-        grid-column: 1 / -1;
-      }
-
-      .form-label {
-        font-size: 11px;
-        font-weight: 600;
-        color: var(--black);
-        text-transform: uppercase;
-        letter-spacing: 0.4px;
-      }
-      .form-hint {
-        font-size: 11px;
-        color: var(--gray-400);
-        margin-top: 2px;
-      }
-
-      .form-input,
-      .form-select,
-      .form-textarea {
-        padding: 10px 13px;
-        border: 1.5px solid var(--gray-200);
-        border-radius: var(--radius-sm);
-        font-family: "DM Sans", sans-serif;
-        font-size: 13.5px;
-        color: var(--black);
-        background: var(--gray-50);
-        outline: none;
-        transition:
-          border-color 0.15s,
-          background 0.15s;
-      }
-      .form-input:focus,
-      .form-select:focus,
-      .form-textarea:focus {
-        border-color: var(--primary);
-        background: var(--white);
-      }
-      .form-input:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-      .form-input.error,
-      .form-select.error {
-        border-color: #dc2626;
-        background: #fef2f2;
-      }
-      .form-textarea {
-        resize: vertical;
-        min-height: 88px;
-      }
-
-      /* No HP input wrapper */
-      .hp-input-wrap {
-        position: relative;
-        display: flex;
-        align-items: center;
-      }
-      .hp-input-wrap .hp-icon {
-        position: absolute;
-        left: 12px;
-        font-size: 14px;
-        pointer-events: none;
-      }
-      .hp-input-wrap .form-input {
-        padding-left: 34px;
-      }
-
-      /* Tags input */
-      .tags-input-wrap {
-        border: 1.5px solid var(--gray-200);
-        border-radius: var(--radius-sm);
-        background: var(--gray-50);
-        padding: 8px 12px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        min-height: 44px;
-        align-items: center;
-        transition: border-color 0.15s;
-        cursor: text;
-      }
-      .tags-input-wrap:focus-within {
-        border-color: var(--primary);
-        background: var(--white);
-      }
-
-      .tag-item {
-        background: var(--black);
-        color: white;
-        font-size: 12px;
-        padding: 3px 8px;
-        border-radius: 99px;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-      }
-      .tag-remove {
-        cursor: pointer;
-        font-size: 13px;
-        line-height: 1;
-        opacity: 0.6;
-      }
-      .tag-remove:hover {
-        opacity: 1;
-      }
-      .tags-input {
-        border: none;
-        outline: none;
-        background: transparent;
-        font-family: "DM Sans", sans-serif;
-        font-size: 13px;
-        color: var(--black);
-        min-width: 80px;
-        flex: 1;
-      }
-
-      /* Jadwal grid */
-      .jadwal-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 7px;
-      }
-      .jadwal-item {
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        padding: 9px 12px;
-        border: 1.5px solid var(--gray-200);
-        border-radius: var(--radius-sm);
-        cursor: pointer;
-        transition: all 0.12s;
-        background: var(--gray-50);
-      }
-      .jadwal-item:hover {
-        border-color: var(--primary);
-        background: var(--primary-light);
-      }
-      .jadwal-item.selected {
-        border-color: var(--primary);
-        background: var(--primary-light);
-      }
-      .jadwal-item input[type="checkbox"] {
-        accent-color: var(--primary);
-        width: 14px;
-        height: 14px;
-        cursor: pointer;
-        flex-shrink: 0;
-      }
-      .jadwal-label {
-        font-size: 12.5px;
-        color: var(--black);
-        cursor: pointer;
-      }
-
-      /* Form actions */
-      .form-actions {
-        display: flex;
-        gap: 8px;
-        justify-content: flex-end;
-        margin-top: 20px;
-        padding-top: 18px;
-        border-top: 1px solid var(--gray-100);
-      }
-
-      .btn-save {
-        padding: 10px 24px;
-        background: var(--black);
-        color: white;
-        border: none;
-        border-radius: var(--radius-sm);
-        font-family: "DM Sans", sans-serif;
-        font-size: 13px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.15s;
-      }
-      .btn-save:hover {
-        background: var(--primary);
-      }
-      .btn-save:disabled {
-        background: var(--gray-300);
-        cursor: not-allowed;
-      }
-
-      .btn-cancel {
-        padding: 10px 18px;
-        background: var(--gray-100);
-        color: var(--black);
-        border: 1px solid var(--gray-200);
-        border-radius: var(--radius-sm);
-        font-family: "DM Sans", sans-serif;
-        font-size: 13px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.15s;
-      }
-      .btn-cancel:hover {
-        background: var(--gray-200);
-      }
-
-      /* Accordion Jadwal */
-      .accordion-hari {
-        border: 1.5px solid var(--gray-200);
-        border-radius: 10px;
-        overflow: hidden;
-        margin-bottom: 8px;
-      }
-      .accordion-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 16px;
-        cursor: pointer;
-        background: var(--gray-50);
-        transition: background 0.15s;
-        user-select: none;
-      }
-      .accordion-header:hover {
-        background: var(--gray-100);
-      }
-      .accordion-header.has-selected {
-        background: var(--primary-light);
-        border-color: var(--primary);
-      }
-      .accordion-hari.open .accordion-header {
-        border-bottom: 1.5px solid var(--gray-200);
-      }
-      .accordion-title {
-        font-size: 13.5px;
-        font-weight: 600;
-        color: var(--black);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .accordion-badge {
-        background: var(--primary);
-        color: white;
-        font-size: 10px;
-        font-weight: 700;
-        padding: 1px 7px;
-        border-radius: 99px;
-        display: none;
-      }
-      .accordion-badge.show {
-        display: inline-block;
-      }
-      .accordion-arrow {
-        font-size: 11px;
-        color: var(--gray-400);
-        transition: transform 0.2s;
-      }
-      .accordion-hari.open .accordion-arrow {
-        transform: rotate(180deg);
-      }
-      .accordion-body {
-        display: none;
-        padding: 10px;
-        background: white;
-      }
-      .accordion-hari.open .accordion-body {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 7px;
-      }
+      .accordion-hari { border: 1.5px solid var(--gray-200); border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
+      .accordion-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; cursor: pointer; background: var(--gray-50); transition: background 0.15s; user-select: none; }
+      .accordion-header:hover { background: var(--gray-100); }
+      .accordion-header.has-selected { background: var(--primary-light); border-color: var(--primary); }
+      .accordion-hari.open .accordion-header { border-bottom: 1.5px solid var(--gray-200); }
+      .accordion-title { font-size: 13.5px; font-weight: 600; color: var(--black); display: flex; align-items: center; gap: 8px; }
+      .accordion-badge { background: var(--primary); color: white; font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 99px; display: none; }
+      .accordion-badge.show { display: inline-block; }
+      .accordion-arrow { font-size: 11px; color: var(--gray-400); transition: transform 0.2s; }
+      .accordion-hari.open .accordion-arrow { transform: rotate(180deg); }
+      .accordion-body { display: none; padding: 10px; background: white; }
+      .accordion-hari.open .accordion-body { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
     </style>
   </head>
   <body>
-    <!-- Mobile Overlay -->
-    <div
-      class="sidebar-overlay"
-      id="sidebarOverlay"
-      onclick="toggleSidebar()"
-    ></div>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
-    <!-- Mobile Topbar -->
     <div class="mobile-topbar">
       <a class="mobile-topbar-brand" href="dashboard.html">
-        <svg
-          width="26"
-          height="26"
-          viewBox="0 0 100 100"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg width="26" height="26" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
           <rect width="100" height="100" rx="22" fill="#f97316" />
           <polygon points="0,58 100,42 100,100 0,100" fill="#0a0a0a" />
           <path d="M28 24 L72 24 L72 37 L40 37 L40 49 L28 49 Z" fill="white" />
           <rect x="40" y="45" width="28" height="11" fill="white" />
-          <path
-            d="M28 60 L40 60 L40 68 L72 68 L72 80 L28 80 Z"
-            fill="#f97316"
-          />
+          <path d="M28 60 L40 60 L40 68 L72 68 L72 80 L28 80 Z" fill="#f97316" />
         </svg>
         EduMate
       </a>
       <div class="mobile-topbar-right">
-        <button
-          class="btn-hamburger"
-          id="hamburgerBtn"
-          onclick="toggleSidebar()"
-        >
+        <button class="btn-hamburger" id="hamburgerBtn" onclick="toggleSidebar()">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
 
-    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-brand">
-        <svg
-          width="28"
-          height="28"
-          viewBox="0 0 100 100"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg width="28" height="28" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
           <rect width="100" height="100" rx="22" fill="#f97316" />
           <polygon points="0,58 100,42 100,100 0,100" fill="#0a0a0a" />
           <path d="M28 24 L72 24 L72 37 L40 37 L40 49 L28 49 Z" fill="white" />
           <rect x="40" y="45" width="28" height="11" fill="white" />
-          <path
-            d="M28 60 L40 60 L40 68 L72 68 L72 80 L28 80 Z"
-            fill="#f97316"
-          />
+          <path d="M28 60 L40 60 L40 68 L72 68 L72 80 L28 80 Z" fill="#f97316" />
         </svg>
         <span class="brand-name">EduMate</span>
       </div>
       <nav class="nav-section">
         <span class="nav-label">Menu</span>
         <a href="dashboard.html" class="nav-item">
-          <span class="nav-icon"><i class="bi bi-house-fill"></i></span>
-          Dashboard
+          <span class="nav-icon"><i class="bi bi-house-fill"></i></span>Dashboard
         </a>
         <a href="cari-teman.html" class="nav-item">
-          <span class="nav-icon"><i class="bi bi-search"></i></span>
-          Cari Teman Belajar
+          <span class="nav-icon"><i class="bi bi-search"></i></span>Cari Teman Belajar
         </a>
         <a href="jadwal.html" class="nav-item">
-          <span class="nav-icon"><i class="bi bi-calendar-event"></i></span>
-          Jadwal Saya
+          <span class="nav-icon"><i class="bi bi-calendar-event"></i></span>Jadwal Saya
         </a>
         <a href="sesi.html" class="nav-item">
-          <span class="nav-icon"><i class="bi bi-book"></i></span>
-          Sesi Belajar
+          <span class="nav-icon"><i class="bi bi-book"></i></span>Sesi Belajar
         </a>
         <div class="nav-divider"></div>
         <span class="nav-label">Lainnya</span>
@@ -952,100 +327,54 @@
           Notifikasi<span class="nav-badge" id="navBadge">0</span>
         </a>
         <a href="rating.html" class="nav-item">
-          <span class="nav-icon"><i class="bi bi-star-fill"></i></span>
-          Rating & Review
+          <span class="nav-icon"><i class="bi bi-star-fill"></i></span>Rating & Review
         </a>
         <a href="profil.html" class="nav-item active">
-          <span class="nav-icon"><i class="bi bi-person-circle"></i></span>
-          Profil Saya
+          <span class="nav-icon"><i class="bi bi-person-circle"></i></span>Profil Saya
         </a>
       </nav>
       <div class="sidebar-footer">
         <a href="profil.html" class="sidebar-user">
           <div class="user-avatar">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#9b9894"
-              stroke-width="2"
-            >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9b9894" stroke-width="2">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
               <circle cx="12" cy="7" r="4" />
             </svg>
           </div>
           <div class="user-info">
             <div class="user-name">Nama User</div>
-            <div class="user-email">
-              <span
-                class="__cf_email__"
-                data-cfemail="ddb8b0bcb4b19dbab0bcb4b1f3beb2b0"
-                >[email&#160;protected]</span
-              >
-            </div>
+            <div class="user-email">email@example.com</div>
           </div>
         </a>
         <button class="btn-logout" onclick="logout()">
-    <span class="nav-icon"><i class="bi bi-box-arrow-right"></i></span>
-    Keluar
-  </button>
-</div>
+          <span class="nav-icon"><i class="bi bi-box-arrow-right"></i></span>Keluar
+        </button>
       </div>
     </aside>
 
-    <!-- MAIN -->
     <main class="main">
       <div class="page-header anim-1">
         <h1>Profil Saya</h1>
-        <p>
-          Lengkapi profilmu agar sistem bisa menemukan teman belajar yang paling
-          cocok.
-        </p>
+        <p>Lengkapi profilmu agar sistem bisa menemukan teman belajar yang paling cocok.</p>
       </div>
 
       <div class="profil-layout anim-2">
         <!-- KOLOM KIRI -->
         <div>
-          <!-- Profile Hero Card -->
           <div class="profile-hero">
             <div class="profile-hero-top">
               <div class="profile-avatar-lg" id="avatarLg">👤</div>
               <div class="profil-nama" id="profilNama">Nama User</div>
-              <div class="profil-email" id="profilEmail">
-                <a
-                  href="/cdn-cgi/l/email-protection"
-                  class="__cf_email__"
-                  data-cfemail="43262e222a2f03242e222a2f6d202c2e"
-                  >[email&#160;protected]</a
-                >
-              </div>
+              <div class="profil-email" id="profilEmail">email@example.com</div>
               <div class="profil-tags" id="profilTags"></div>
             </div>
             <div class="profile-hero-body">
-              <!-- WA Button — hanya muncul kalau ada no_hp -->
-              <a
-                class="btn-wa"
-                id="waLink"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                style="display: none"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
-                  />
+              <a class="btn-wa" id="waLink" href="#" target="_blank" rel="noopener noreferrer" style="display: none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                 </svg>
                 Hubungi via WhatsApp
               </a>
-
               <div class="stats-mini">
                 <div class="stat-row">
                   <div class="stat-row-label">📖 Sesi Selesai</div>
@@ -1060,18 +389,12 @@
                   <div class="stat-row-value" id="bergabungVal">—</div>
                 </div>
               </div>
-
-              <button class="btn-logout" onclick="logout()">
-                🚪 Keluar dari Akun
-              </button>
+              <button class="btn-logout" onclick="logout()">🚪 Keluar dari Akun</button>
             </div>
           </div>
 
-          <!-- Rating Card -->
           <div class="card">
-            <div class="card-head">
-              <div class="card-title">⭐ Rating Diterima</div>
-            </div>
+            <div class="card-head"><div class="card-title">⭐ Rating Diterima</div></div>
             <div class="card-body compact" id="ratingList">
               <div class="empty-hint">Memuat...</div>
             </div>
@@ -1080,123 +403,61 @@
 
         <!-- KOLOM KANAN -->
         <div>
-          <!-- Info Dasar -->
           <div class="card">
-            <div class="card-head">
-              <div class="card-title">📋 Informasi Dasar</div>
-            </div>
+            <div class="card-head"><div class="card-title">📋 Informasi Dasar</div></div>
             <div class="card-body">
               <div class="form-grid">
                 <div class="form-group">
                   <label class="form-label">Nama Lengkap</label>
-                  <input
-                    type="text"
-                    id="inputNama"
-                    class="form-input"
-                    placeholder="Nama kamu"
-                  />
+                  <input type="text" id="inputNama" class="form-input" placeholder="Nama kamu" />
                 </div>
                 <div class="form-group">
                   <label class="form-label">Email</label>
-                  <input
-                    type="email"
-                    id="inputEmail"
-                    class="form-input"
-                    disabled
-                  />
+                  <input type="email" id="inputEmail" class="form-input" disabled />
                 </div>
                 <div class="form-group">
                   <label class="form-label">Jurusan</label>
-                  <input
-                    type="text"
-                    id="inputJurusan"
-                    class="form-input"
-                    placeholder="Contoh: Teknik Informatika"
-                  />
+                  <input type="text" id="inputJurusan" class="form-input" placeholder="Contoh: Teknik Informatika" />
                 </div>
                 <div class="form-group">
                   <label class="form-label">Universitas</label>
-                  <input
-                    type="text"
-                    id="inputUniversitas"
-                    class="form-input"
-                    placeholder="Contoh: USU"
-                  />
+                  <input type="text" id="inputUniversitas" class="form-input" placeholder="Contoh: USU" />
                 </div>
                 <div class="form-group full">
-                  <label class="form-label">
-                    No. WhatsApp <span style="color: #dc2626">*</span>
-                  </label>
+                  <label class="form-label">No. WhatsApp <span style="color:#dc2626">*</span></label>
                   <div class="hp-input-wrap">
                     <span class="hp-icon">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="#25d366"
-                      >
-                        <path
-                          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
-                        />
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#25d366">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                       </svg>
                     </span>
-                    <input
-                      type="tel"
-                      id="inputNoHp"
-                      class="form-input"
-                      placeholder="Contoh: 08123456789"
-                    />
+                    <input type="tel" id="inputNoHp" class="form-input" placeholder="Contoh: 08123456789" />
                   </div>
-                  <span class="form-hint"
-                    >Wajib diisi — teman belajar bisa langsung chat via
-                    WhatsApp</span
-                  >
+                  <span class="form-hint">Wajib diisi — teman belajar bisa langsung chat via WhatsApp</span>
                 </div>
                 <div class="form-group full">
                   <label class="form-label">Bio</label>
-                  <textarea
-                    id="inputBio"
-                    class="form-textarea"
-                    placeholder="Ceritakan sedikit tentang dirimu..."
-                  ></textarea>
+                  <textarea id="inputBio" class="form-textarea" placeholder="Ceritakan sedikit tentang dirimu..."></textarea>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Profil Belajar -->
           <div class="card">
-            <div class="card-head">
-              <div class="card-title">🎯 Profil Belajar</div>
-            </div>
+            <div class="card-head"><div class="card-title">🎯 Profil Belajar</div></div>
             <div class="card-body">
               <div class="form-grid">
                 <div class="form-group full">
-                  <label class="form-label"
-                    >Skill / Mata Kuliah yang Dikuasai</label
-                  >
+                  <label class="form-label">Skill / Mata Kuliah yang Dikuasai</label>
                   <div class="tags-input-wrap" id="skillWrap">
-                    <input
-                      type="text"
-                      class="tags-input"
-                      placeholder="Tambah skill, tekan Enter..."
-                      onkeydown="addTag(event, 'skillWrap')"
-                      onblur="addTagFromBlur('skillWrap')"
-                    />
+                    <input type="text" class="tags-input" placeholder="Tambah skill, tekan Enter..." onkeydown="addTag(event, 'skillWrap')" onblur="addTagFromBlur('skillWrap')" />
                   </div>
                   <span class="form-hint">Tekan Enter untuk menambah</span>
                 </div>
                 <div class="form-group full">
                   <label class="form-label">Topik yang Ingin Dipelajari</label>
                   <div class="tags-input-wrap" id="topikWrap">
-                    <input
-                      type="text"
-                      class="tags-input"
-                      placeholder="Tambah topik, tekan Enter..."
-                      onkeydown="addTag(event, 'topikWrap')"
-                      onblur="addTagFromBlur('topikWrap')"
-                    />
+                    <input type="text" class="tags-input" placeholder="Tambah topik, tekan Enter..." onkeydown="addTag(event, 'topikWrap')" onblur="addTagFromBlur('topikWrap')" />
                   </div>
                   <span class="form-hint">Tekan Enter untuk menambah</span>
                 </div>
@@ -1229,34 +490,27 @@
                     <option value="Kampus">Kampus</option>
                   </select>
                 </div>
-
                 <div class="form-group full">
-                  <label class="form-label" style="margin-bottom: 10px"
-                    >Jadwal Kosong</label
-                  >
+                  <label class="form-label" style="margin-bottom:10px">Jadwal Kosong</label>
                   <div id="jadwalAccordion"></div>
                 </div>
               </div>
-
               <div class="form-actions">
-                <button class="btn-cancel" onclick="location.reload()">
-                  Batal
-                </button>
-                <button class="btn-save" id="btnSave" onclick="simpanProfil()">
-                  Simpan Perubahan
-                </button>
+                <button class="btn-cancel" onclick="location.reload()">Batal</button>
+                <button class="btn-save" id="btnSave" onclick="simpanProfil()">Simpan Perubahan</button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </main>
+
     <script src="../js/auth-client.js"></script>
     <script>
-      const API =
-        window.location.hostname === "localhost"
-          ? "http://localhost:3000/api"
-          : window.location.origin + "/api";
+      const API = window.location.hostname === "localhost"
+        ? "http://localhost:3000/api"
+        : window.location.origin + "/api";
+
       // ===== TAG HELPERS =====
       function addTag(event, wrapId) {
         if (event.key === "Enter" || event.key === ",") {
@@ -1270,13 +524,8 @@
         const input = wrap.querySelector(".tags-input");
         const val = input.value.trim();
         if (!val) return;
-        const existing = [...wrap.querySelectorAll(".tag-item")].map(
-          (t) => t.dataset.val,
-        );
-        if (existing.includes(val)) {
-          input.value = "";
-          return;
-        }
+        const existing = [...wrap.querySelectorAll(".tag-item")].map(t => t.dataset.val);
+        if (existing.includes(val)) { input.value = ""; return; }
         renderTagItem(wrap, input, val);
         input.value = "";
       }
@@ -1296,15 +545,9 @@
       }
 
       function getTagValues(wrapId) {
-        return [
-          ...document.getElementById(wrapId).querySelectorAll(".tag-item"),
-        ]
-          .map((t) => t.dataset.val || t.textContent.replace("×", "").trim())
+        return [...document.getElementById(wrapId).querySelectorAll(".tag-item")]
+          .map(t => t.dataset.val || t.textContent.replace("×", "").trim())
           .filter(Boolean);
-      }
-
-      function toggleJadwal(cb) {
-        cb.closest(".jadwal-item").classList.toggle("selected", cb.checked);
       }
 
       function formatWaNumber(hp) {
@@ -1316,7 +559,7 @@
         return clean;
       }
 
-      // ===== SIMPAN PROFIL =====
+      // ===== SIMPAN PROFIL (FIXED) =====
       async function simpanProfil() {
         const no_hp = document.getElementById("inputNoHp").value.trim();
         if (!no_hp) {
@@ -1333,22 +576,17 @@
         addTagFromBlur("skillWrap");
         addTagFromBlur("topikWrap");
 
-        // Ambil semua jadwal yang dicentang
         const jadwalDipilih = [
-          ...document.querySelectorAll(
-            '.jadwal-item input[type="checkbox"]:checked',
-          ),
-        ].map((cb) => cb.value);
+          ...document.querySelectorAll('.jadwal-item input[type="checkbox"]:checked')
+        ].map(cb => cb.value);
 
         const token = localStorage.getItem("sb_token");
+
         try {
-          const [r1, r2] = await Promise.all([
+          const [r1, r2, r3] = await Promise.all([
             fetch(`${API}/auth/profil`, {
               method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
+              headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
               body: JSON.stringify({
                 nama: document.getElementById("inputNama").value,
                 jurusan: document.getElementById("inputJurusan").value,
@@ -1359,31 +597,29 @@
             }),
             fetch(`${API}/auth/profil-belajar`, {
               method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
+              headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
               body: JSON.stringify({
                 skill: getTagValues("skillWrap").join(", "),
                 topik_belajar: getTagValues("topikWrap").join(", "),
-                tingkat_kemampuan:
-                  document.getElementById("tingkatSelect").value,
+                tingkat_kemampuan: document.getElementById("tingkatSelect").value,
                 gaya_belajar: document.getElementById("gayaSelect").value,
                 lokasi_belajar: document.getElementById("lokasiSelect").value,
               }),
             }),
+            fetch(`${API}/jadwal`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+              body: JSON.stringify({ jadwal: jadwalDipilih, replace: true }),
+            }),
           ]);
 
-          const [d1, d2] = await Promise.all([r1.json(), r2.json()]);
+          const [d1, d2, d3] = await Promise.all([r1.json(), r2.json(), r3.json()]);
 
           if (d1.success && d2.success) {
             showToast("Profil berhasil disimpan! ✅", "success");
             setTimeout(() => location.reload(), 1200);
           } else {
-            showToast(
-              "Gagal menyimpan: " + (d1.message || d2.message),
-              "error",
-            );
+            showToast("Gagal menyimpan: " + (d1.message || d2.message), "error");
           }
         } catch (err) {
           showToast("Terjadi kesalahan: " + err.message, "error");
@@ -1402,50 +638,38 @@
             headers: { Authorization: `Bearer ${token}` },
           });
           const data = await res.json();
-
           if (!data.success || !data.rating || data.rating.length === 0) {
-            container.innerHTML =
-              '<div class="empty-hint">Belum ada rating diterima.</div>';
+            container.innerHTML = '<div class="empty-hint">Belum ada rating diterima.</div>';
             return;
           }
           if (data.rata_rata) {
-            document.getElementById("statRating").textContent =
-              parseFloat(data.rata_rata).toFixed(1) + " ⭐";
+            document.getElementById("statRating").textContent = parseFloat(data.rata_rata).toFixed(1) + " ⭐";
           }
-          container.innerHTML = data.rating
-            .slice(0, 3)
-            .map((r) => {
-              const bintang = "★".repeat(r.nilai) + "☆".repeat(5 - r.nilai);
-              const tgl = new Date(r.created_at).toLocaleDateString("id-ID", {
-                day: "numeric",
-                month: "short",
-                year: "numeric",
-              });
-              const avatar = r.pemberi_foto
-                ? `<img src="${r.pemberi_foto}" referrerpolicy="no-referrer" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`
-                : "👤";
-              return `<div class="rating-item">
-            <div class="rating-avatar">${avatar}</div>
-            <div>
-              <div class="rating-name">${r.pemberi_nama}</div>
-              <div class="rating-stars">${bintang}</div>
-              ${r.review ? `<div class="rating-text">${r.review}</div>` : ""}
-              <div class="rating-date">${tgl}</div>
-            </div>
-          </div>`;
-            })
-            .join("");
+          container.innerHTML = data.rating.slice(0, 3).map(r => {
+            const bintang = "★".repeat(r.nilai) + "☆".repeat(5 - r.nilai);
+            const tgl = new Date(r.created_at).toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" });
+            const avatar = r.pemberi_foto
+              ? `<img src="${r.pemberi_foto}" referrerpolicy="no-referrer" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`
+              : "👤";
+            return `<div class="rating-item">
+              <div class="rating-avatar">${avatar}</div>
+              <div>
+                <div class="rating-name">${r.pemberi_nama}</div>
+                <div class="rating-stars">${bintang}</div>
+                ${r.review ? `<div class="rating-text">${r.review}</div>` : ""}
+                <div class="rating-date">${tgl}</div>
+              </div>
+            </div>`;
+          }).join("");
         } catch (e) {
-          container.innerHTML =
-            '<div class="empty-hint">Belum ada rating diterima.</div>';
+          container.innerHTML = '<div class="empty-hint">Belum ada rating diterima.</div>';
         }
       }
 
       // ===== INIT =====
-      initPage().then((user) => {
+      initPage().then(user => {
         if (!user) return;
 
-        // Profile hero
         document.getElementById("profilNama").textContent = user.nama || "";
         document.getElementById("profilEmail").textContent = user.email || "";
         if (user.foto) {
@@ -1453,17 +677,12 @@
             `<img src="${user.foto}" referrerpolicy="no-referrer" alt="${user.nama}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
         }
 
-        // Tags di hero
         const tagsEl = document.getElementById("profilTags");
         tagsEl.innerHTML = "";
-        if (user.gaya_belajar)
-          tagsEl.innerHTML += `<span class="ptag orange">${user.gaya_belajar}</span>`;
-        if (user.lokasi_belajar)
-          tagsEl.innerHTML += `<span class="ptag">${user.lokasi_belajar}</span>`;
-        if (user.tingkat_kemampuan)
-          tagsEl.innerHTML += `<span class="ptag">${user.tingkat_kemampuan}</span>`;
+        if (user.gaya_belajar) tagsEl.innerHTML += `<span class="ptag orange">${user.gaya_belajar}</span>`;
+        if (user.lokasi_belajar) tagsEl.innerHTML += `<span class="ptag">${user.lokasi_belajar}</span>`;
+        if (user.tingkat_kemampuan) tagsEl.innerHTML += `<span class="ptag">${user.tingkat_kemampuan}</span>`;
 
-        // WA button
         if (user.no_hp) {
           const waNum = formatWaNumber(user.no_hp);
           const waEl = document.getElementById("waLink");
@@ -1471,76 +690,47 @@
           waEl.style.display = "flex";
         }
 
-        // Bergabung
         if (user.created_at) {
-          document.getElementById("bergabungVal").textContent = new Date(
-            user.created_at,
-          ).toLocaleDateString("id-ID", { month: "short", year: "numeric" });
+          document.getElementById("bergabungVal").textContent = new Date(user.created_at)
+            .toLocaleDateString("id-ID", { month: "short", year: "numeric" });
         }
 
-        // Form isi
         document.getElementById("inputNama").value = user.nama || "";
         document.getElementById("inputEmail").value = user.email || "";
         document.getElementById("inputJurusan").value = user.jurusan || "";
-        document.getElementById("inputUniversitas").value =
-          user.universitas || "";
+        document.getElementById("inputUniversitas").value = user.universitas || "";
         document.getElementById("inputBio").value = user.bio || "";
         document.getElementById("inputNoHp").value = user.no_hp || "";
 
-        // Selects
-        if (user.tingkat_kemampuan)
-          document.getElementById("tingkatSelect").value =
-            user.tingkat_kemampuan;
-        if (user.gaya_belajar)
-          document.getElementById("gayaSelect").value = user.gaya_belajar;
-        if (user.lokasi_belajar)
-          document.getElementById("lokasiSelect").value = user.lokasi_belajar;
+        if (user.tingkat_kemampuan) document.getElementById("tingkatSelect").value = user.tingkat_kemampuan;
+        if (user.gaya_belajar) document.getElementById("gayaSelect").value = user.gaya_belajar;
+        if (user.lokasi_belajar) document.getElementById("lokasiSelect").value = user.lokasi_belajar;
 
-        // Tags skill & topik
         if (user.skill) {
           const wrap = document.getElementById("skillWrap");
           const input = wrap.querySelector(".tags-input");
-          user.skill.split(",").forEach((s) => {
-            if (s.trim()) renderTagItem(wrap, input, s.trim());
-          });
+          user.skill.split(",").forEach(s => { if (s.trim()) renderTagItem(wrap, input, s.trim()); });
         }
         if (user.topik_belajar) {
           const wrap = document.getElementById("topikWrap");
           const input = wrap.querySelector(".tags-input");
-          user.topik_belajar.split(",").forEach((t) => {
-            if (t.trim()) renderTagItem(wrap, input, t.trim());
-          });
+          user.topik_belajar.split(",").forEach(t => { if (t.trim()) renderTagItem(wrap, input, t.trim()); });
         }
 
         loadRating(user.id);
 
-        // Sesi selesai
-        fetch(`${API}/sesi`, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("sb_token"),
-          },
-        })
-          .then((r) => r.json())
-          .then((data) => {
-            if (data.success)
-              document.getElementById("statSesi").textContent =
-                data.sesi.filter((s) => s.status === "selesai").length;
-          })
-          .catch(() => {});
+        fetch(`${API}/sesi`, { headers: { Authorization: "Bearer " + localStorage.getItem("sb_token") } })
+          .then(r => r.json())
+          .then(data => {
+            if (data.success) document.getElementById("statSesi").textContent =
+              data.sesi.filter(s => s.status === "selesai").length;
+          }).catch(() => {});
 
-        // Jadwal
-        fetch(`${API}/jadwal`, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("sb_token"),
-          },
-        })
-          .then((r) => r.json())
-          .then((data) => {
+        fetch(`${API}/jadwal`, { headers: { Authorization: "Bearer " + localStorage.getItem("sb_token") } })
+          .then(r => r.json())
+          .then(data => {
             if (!data.success) return;
-            function toMenit(t) {
-              const [h, m] = t.substring(0, 5).split(":").map(Number);
-              return h * 60 + m;
-            }
+            function toMenit(t) { const [h, m] = t.substring(0, 5).split(":").map(Number); return h * 60 + m; }
             function getSesi(jam) {
               const m = toMenit(jam);
               if (m >= 360 && m < 660) return "Pagi";
@@ -1550,85 +740,54 @@
               return null;
             }
             const centangSet = new Set();
-            data.jadwal.forEach((j) => {
-              const sesi = getSesi(j.jam_mulai);
-              if (sesi) centangSet.add(j.hari + " " + sesi);
-            });
-            centangSet.forEach((val) => {
+            data.jadwal.forEach(j => { const sesi = getSesi(j.jam_mulai); if (sesi) centangSet.add(j.hari + " " + sesi); });
+            centangSet.forEach(val => {
               const cb = document.querySelector(`input[value="${val}"]`);
               const hari = val.split(" ")[0];
-              if (cb) {
-                cb.checked = true;
-                cb.closest(".jadwal-item").classList.add("selected");
-                updateBadge("jadwalAccordion", hari);
-              }
+              if (cb) { cb.checked = true; cb.closest(".jadwal-item").classList.add("selected"); updateBadge("jadwalAccordion", hari); }
             });
-          })
-          .catch(() => {});
+          }).catch(() => {});
       });
-      const HARI_LIST = [
-        "Senin",
-        "Selasa",
-        "Rabu",
-        "Kamis",
-        "Jumat",
-        "Sabtu",
-        "Minggu",
-      ];
+
+      const HARI_LIST = ["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"];
       const SESI_LIST = [
         { emoji: "☀️", label: "Pagi" },
         { emoji: "🌞", label: "Siang" },
         { emoji: "🌤️", label: "Sore" },
         { emoji: "🌙", label: "Malam" },
       ];
-      const HARI_EMOJI = {
-        Senin: "📅",
-        Selasa: "📅",
-        Rabu: "📅",
-        Kamis: "📅",
-        Jumat: "📅",
-        Sabtu: "🎉",
-        Minggu: "🎉",
-      };
+      const HARI_EMOJI = { Senin:"📅",Selasa:"📅",Rabu:"📅",Kamis:"📅",Jumat:"📅",Sabtu:"🎉",Minggu:"🎉" };
 
       function buildAccordion(containerId) {
         const container = document.getElementById(containerId);
-        container.innerHTML = HARI_LIST.map(
-          (hari) => `
-    <div class="accordion-hari" id="acc-${containerId}-${hari}">
-      <div class="accordion-header" onclick="toggleAcc('${containerId}','${hari}')">
-        <div class="accordion-title">
-          ${HARI_EMOJI[hari]} ${hari}
-          <span class="accordion-badge" id="badge-${containerId}-${hari}">0</span>
-        </div>
-        <span class="accordion-arrow">▼</span>
-      </div>
-      <div class="accordion-body">
-        ${SESI_LIST.map(
-          (s) => `
-          <label class="jadwal-item">
-            <input type="checkbox" value="${hari} ${s.label}" onchange="toggleJadwalProfil(this,'${containerId}','${hari}')"/>
-            <span class="jadwal-label">${s.emoji} ${s.label}</span>
-          </label>
-        `,
-        ).join("")}
-      </div>
-    </div>
-  `,
-        ).join("");
+        container.innerHTML = HARI_LIST.map(hari => `
+          <div class="accordion-hari" id="acc-${containerId}-${hari}">
+            <div class="accordion-header" onclick="toggleAcc('${containerId}','${hari}')">
+              <div class="accordion-title">
+                ${HARI_EMOJI[hari]} ${hari}
+                <span class="accordion-badge" id="badge-${containerId}-${hari}">0</span>
+              </div>
+              <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-body">
+              ${SESI_LIST.map(s => `
+                <label class="jadwal-item">
+                  <input type="checkbox" value="${hari} ${s.label}" onchange="toggleJadwalProfil(this,'${containerId}','${hari}')"/>
+                  <span class="jadwal-label">${s.emoji} ${s.label}</span>
+                </label>
+              `).join("")}
+            </div>
+          </div>
+        `).join("");
       }
 
       function toggleAcc(containerId, hari) {
-        document
-          .getElementById(`acc-${containerId}-${hari}`)
-          .classList.toggle("open");
+        document.getElementById(`acc-${containerId}-${hari}`).classList.toggle("open");
       }
 
       function updateBadge(containerId, hari) {
         const acc = document.getElementById(`acc-${containerId}-${hari}`);
-        const checked = acc.querySelectorAll(
-          'input[type="checkbox"]:checked',
-        ).length;
+        const checked = acc.querySelectorAll('input[type="checkbox"]:checked').length;
         const badge = document.getElementById(`badge-${containerId}-${hari}`);
         const header = acc.querySelector(".accordion-header");
         badge.textContent = checked;

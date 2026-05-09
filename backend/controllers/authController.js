@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 // ==================== HELPER: cek status online ====================
-// User dianggap online jika last_active dalam 5 menit terakhir
 function getOnlineStatus(lastActive) {
   if (!lastActive) return { online: false, label: 'Tidak diketahui' };
   const diff  = Date.now() - new Date(lastActive).getTime();
@@ -50,7 +49,7 @@ exports.googleCallback = (req, res) => {
 
 // ==================== TOKEN EXCHANGE ====================
 exports.tokenExchange = (req, res) => {
-  const token         = req.session.pendingToken;
+  const token          = req.session.pendingToken;
   const redirectTarget = req.session.redirectTarget;
   if (!token) return res.redirect('/pages/login.html?error=no_token');
 
@@ -73,7 +72,7 @@ exports.tokenExchange = (req, res) => {
 };
 
 // ==================== GET CURRENT USER ====================
-exports.getMe = (req, res) => {
+exports.getMe = async (req, res) => {
   const userId = req.user.id;
   const query = `
     SELECT
@@ -81,21 +80,23 @@ exports.getMe = (req, res) => {
       u.bio, u.no_hp, u.last_active, u.created_at,
       pb.skill, pb.topik_belajar, pb.tingkat_kemampuan,
       pb.gaya_belajar, pb.lokasi_belajar
-    FROM users u
-    LEFT JOIN profil_belajar pb ON u.id = pb.user_id
-    WHERE u.id = ?
+    FROM _users u
+    LEFT JOIN _profil_belajar pb ON u.id = pb.user_id
+    WHERE u.id = $1
   `;
-  db.query(query, [userId], (err, results) => {
-    if (err) return res.status(500).json({ success: false, message: 'Database error', error: err.message });
-    if (results.length === 0) return res.status(404).json({ success: false, message: 'User tidak ditemukan' });
-    const user   = results[0];
+  try {
+    const results = await db.query(query, [userId]);
+    if (results.rows.length === 0) return res.status(404).json({ success: false, message: 'User tidak ditemukan' });
+    const user   = results.rows[0];
     const status = getOnlineStatus(user.last_active);
     res.json({ success: true, user: { ...user, ...status } });
-  });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Database error', error: err.message });
+  }
 };
 
 // ==================== GET USER BY ID (PROFIL PUBLIK) ====================
-exports.getUserById = (req, res) => {
+exports.getUserById = async (req, res) => {
   const targetId = parseInt(req.params.id);
   if (!targetId || isNaN(targetId)) {
     return res.status(400).json({ success: false, message: 'ID tidak valid' });
@@ -106,102 +107,100 @@ exports.getUserById = (req, res) => {
       u.bio, u.no_hp, u.last_active, u.created_at,
       pb.skill, pb.topik_belajar, pb.tingkat_kemampuan,
       pb.gaya_belajar, pb.lokasi_belajar
-    FROM users u
-    LEFT JOIN profil_belajar pb ON u.id = pb.user_id
-    WHERE u.id = ?
+    FROM _users u
+    LEFT JOIN _profil_belajar pb ON u.id = pb.user_id
+    WHERE u.id = $1
   `;
-  db.query(query, [targetId], (err, results) => {
-    if (err) return res.status(500).json({ success: false, message: 'Database error', error: err.message });
-    if (results.length === 0) return res.status(404).json({ success: false, message: 'User tidak ditemukan' });
-    const user   = results[0];
+  try {
+    const results = await db.query(query, [targetId]);
+    if (results.rows.length === 0) return res.status(404).json({ success: false, message: 'User tidak ditemukan' });
+    const user   = results.rows[0];
     const status = getOnlineStatus(user.last_active);
     res.json({ success: true, user: { ...user, ...status } });
-  });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Database error', error: err.message });
+  }
 };
 
 // ==================== PING (update last_active) ====================
-// Dipanggil frontend setiap 60 detik selama user aktif
-exports.ping = (req, res) => {
+exports.ping = async (req, res) => {
   const userId = req.user.id;
-  db.query('UPDATE users SET last_active = NOW() WHERE id = ?', [userId], (err) => {
-    if (err) return res.status(500).json({ success: false });
+  try {
+    await db.query('UPDATE _users SET last_active = NOW() WHERE id = $1', [userId]);
     res.json({ success: true });
-  });
+ } catch (err) {
+  console.error('[PING ERROR]', err.stack);
+  res.status(500).json({ success: false });
+}
 };
 
 // ==================== UPDATE PROFIL ====================
-exports.updateProfil = (req, res) => {
+exports.updateProfil = async (req, res) => {
   const userId = req.user.id;
   const { nama, jurusan, universitas, bio, no_hp } = req.body;
   const sanitizedHp = no_hp ? no_hp.replace(/[^\d\s\+\-]/g, '').trim() : null;
-  db.query(
-    `UPDATE users SET nama=?, jurusan=?, universitas=?, bio=?, no_hp=? WHERE id=?`,
-    [nama, jurusan, universitas, bio, sanitizedHp, userId],
-    (err) => {
-      if (err) return res.status(500).json({ success: false, message: 'Gagal update profil' });
-      res.json({ success: true, message: 'Profil berhasil diupdate' });
-    }
-  );
+  try {
+    await db.query(
+      `UPDATE _users SET nama=$1, jurusan=$2, universitas=$3, bio=$4, no_hp=$5 WHERE id=$6`,
+      [nama, jurusan, universitas, bio, sanitizedHp, userId]
+    );
+    res.json({ success: true, message: 'Profil berhasil diupdate' });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Gagal update profil' });
+  }
 };
 
 // ==================== UPDATE PROFIL BELAJAR ====================
-exports.updateProfilBelajar = (req, res) => {
+exports.updateProfilBelajar = async (req, res) => {
   const userId = req.user.id;
   const { skill, topik_belajar, tingkat_kemampuan, gaya_belajar, lokasi_belajar } = req.body;
   const query = `
-    INSERT INTO profil_belajar (user_id, skill, topik_belajar, tingkat_kemampuan, gaya_belajar, lokasi_belajar)
-    VALUES (?, ?, ?, ?, ?, ?)
-    ON DUPLICATE KEY UPDATE
-      skill = VALUES(skill),
-      topik_belajar = VALUES(topik_belajar),
-      tingkat_kemampuan = VALUES(tingkat_kemampuan),
-      gaya_belajar = VALUES(gaya_belajar),
-      lokasi_belajar = VALUES(lokasi_belajar)
+    INSERT INTO _profil_belajar (user_id, skill, topik_belajar, tingkat_kemampuan, gaya_belajar, lokasi_belajar)
+    VALUES ($1, $2, $3, $4, $5, $6)
+    ON CONFLICT (user_id) DO UPDATE SET
+      skill = EXCLUDED.skill,
+      topik_belajar = EXCLUDED.topik_belajar,
+      tingkat_kemampuan = EXCLUDED.tingkat_kemampuan,
+      gaya_belajar = EXCLUDED.gaya_belajar,
+      lokasi_belajar = EXCLUDED.lokasi_belajar
   `;
-  db.query(query, [userId, skill, topik_belajar, tingkat_kemampuan, gaya_belajar, lokasi_belajar], (err) => {
-    if (err) return res.status(500).json({ success: false, message: 'Gagal update profil belajar' });
+  try {
+    await db.query(query, [userId, skill, topik_belajar, tingkat_kemampuan, gaya_belajar, lokasi_belajar]);
     res.json({ success: true, message: 'Profil belajar berhasil diupdate' });
-  });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Gagal update profil belajar' });
+  }
 };
 
-
 // ==================== PUBLIC STATS (tanpa login) ====================
-exports.getPublicStats = (req, res) => {
-  const db = require('../config/database');
-
-  // Jalankan 3 query paralel
-  const queryTotal   = 'SELECT COUNT(*) as total FROM users';
-  const queryOnline  = "SELECT COUNT(*) as online FROM users WHERE last_active >= DATE_SUB(NOW(), INTERVAL 5 MINUTE)";
-  const querySesi    = "SELECT COUNT(*) as sesi FROM sesi_belajar WHERE status = 'selesai'";
-
-  let results = {};
-  let done = 0;
-
-  const finish = () => {
-    done++;
-    if (done === 3) {
-      res.json({
-        success: true,
-        total_users:  results.total  || 0,
-        online_users: results.online || 0,
-        total_sesi:   results.sesi   || 0,
-      });
-    }
-  };
-
-  db.query(queryTotal,  (err, r) => { results.total  = err ? 0 : r[0].total;  finish(); });
-  db.query(queryOnline, (err, r) => { results.online = err ? 0 : r[0].online; finish(); });
-  db.query(querySesi,   (err, r) => { results.sesi   = err ? 0 : r[0].sesi;   finish(); });
+exports.getPublicStats = async (req, res) => {
+  try {
+    const [r1, r2, r3] = await Promise.all([
+  db.query('SELECT COUNT(*) as total FROM _users'),
+  db.query("SELECT COUNT(*) as online FROM _users WHERE last_active::timestamp >= NOW() - INTERVAL '5 minutes'"),
+  db.query("SELECT COUNT(*) as sesi FROM _sesi_belajar WHERE status = 'selesai'"),
+]);
+res.json({
+  success: true,
+  total_users:  parseInt(r1.rows[0].total)  || 0,
+  online_users: parseInt(r2.rows[0].online) || 0,
+  total_sesi:   parseInt(r3.rows[0].sesi)   || 0,
+});
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Database error', error: err.message });
+  }
 };
 
 // ==================== LOGOUT ====================
-// Ganti exports.logout:
-exports.logout = (req, res) => {
+exports.logout = async (req, res) => {
   const userId = req.user ? req.user.id : null;
 
-  // Reset last_active saat logout agar langsung offline
   if (userId) {
-    db.query('UPDATE users SET last_active = NULL WHERE id = ?', [userId], () => {});
+    try {
+      await db.query('UPDATE _users SET last_active = NULL WHERE id = $1', [userId]);
+    } catch (err) {
+      console.error('Error reset last_active:', err);
+    }
   }
 
   req.logout((logoutErr) => {

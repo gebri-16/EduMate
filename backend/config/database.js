@@ -1,28 +1,21 @@
-const mysql = require("mysql2");
+const { Pool } = require("pg");
 require("dotenv").config();
 
-const db = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT || 3306,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-  // FIX TIMEZONE: Kembalikan DATE/DATETIME sebagai string murni
-  // agar tidak kena offset UTC → WIB di frontend
-  dateStrings: true,
+const db = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false, // wajib untuk Supabase
+  },
 });
 
 // Test koneksi saat startup
-db.getConnection((err, connection) => {
+db.connect((err, client, release) => {
   if (err) {
     console.log("Koneksi database gagal:", err.message);
     return;
   }
   console.log("Koneksi database berhasil! ✅");
-  connection.release();
+  release();
 });
 
-module.exports = db;``
+module.exports = db;

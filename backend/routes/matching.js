@@ -52,7 +52,7 @@ function hitungSkor(userA, userB, jadwalA, jadwalB) {
   return skor;
 }
 
-// helper//
+// helper
 function getOnlineStatus(lastActive) {
   if (!lastActive) return { online: false, label: 'Offline' };
   const diff  = Date.now() - new Date(lastActive).getTime();
@@ -67,74 +67,77 @@ function getOnlineStatus(lastActive) {
 }
 
 // GET /api/matching
-router.get('/', verifyToken, (req, res) => {
+router.get('/', verifyToken, async (req, res) => {
   const userId = req.user.id;
 
-  // query queryUserSaya:
-const queryUserSaya = `
-  SELECT u.id, u.nama, u.email, u.foto, u.jurusan, u.universitas,
-         u.last_active,
-         pb.skill, pb.topik_belajar, pb.tingkat_kemampuan, pb.gaya_belajar, pb.lokasi_belajar
-  FROM users u
-  LEFT JOIN profil_belajar pb ON u.id = pb.user_id
-  WHERE u.id = ?
-`;
+  try {
+    // 1. Ambil profil user yang sedang login
+    const queryUserSaya = `
+      SELECT u.id, u.nama, u.email, u.foto, u.jurusan, u.universitas,
+             u.last_active,
+             pb.skill, pb.topik_belajar, pb.tingkat_kemampuan, pb.gaya_belajar, pb.lokasi_belajar
+      FROM _users u
+      LEFT JOIN _profil_belajar pb ON u.id = pb.user_id
+      WHERE u.id = $1
+    `;
+    const userSayaResult = await db.query(queryUserSaya, [userId]);
+    if (userSayaResult.rows.length === 0)
+      return res.status(404).json({ success: false, message: 'User tidak ditemukan' });
 
-  db.query(queryUserSaya, [userId], (err, userSayaResult) => {
-    if (err) return res.status(500).json({ success: false, message: 'Error ambil profil saya' });
-    if (userSayaResult.length === 0) return res.status(404).json({ success: false, message: 'User tidak ditemukan' });
-
-    const userSaya = userSayaResult[0];
+    const userSaya = userSayaResult.rows[0];
 
     // 2. Ambil jadwal user yang sedang login
-    db.query('SELECT * FROM jadwal_kosong WHERE user_id = ?', [userId], (err, jadwalSaya) => {
-      if (err) return res.status(500).json({ success: false, message: 'Error ambil jadwal saya' });
+    const jadwalSayaResult = await db.query(
+      'SELECT * FROM _jadwal_kosong WHERE user_id = $1',
+      [userId]
+    );
+    const jadwalSaya = jadwalSayaResult.rows;
 
-      // 3. Ambil semua user lain beserta profil belajar
-      const querySemuaUser = `
-  SELECT u.id, u.nama, u.email, u.foto, u.jurusan, u.universitas,
-         u.last_active,
-         pb.skill, pb.topik_belajar, pb.tingkat_kemampuan, pb.gaya_belajar, pb.lokasi_belajar
-  FROM users u
-  LEFT JOIN profil_belajar pb ON u.id = pb.user_id
-  WHERE u.id != ?
-`;
+    // 3. Ambil semua user lain beserta profil belajar
+    const querySemuaUser = `
+      SELECT u.id, u.nama, u.email, u.foto, u.jurusan, u.universitas,
+             u.last_active,
+             pb.skill, pb.topik_belajar, pb.tingkat_kemampuan, pb.gaya_belajar, pb.lokasi_belajar
+      FROM _users u
+      LEFT JOIN _profil_belajar pb ON u.id = pb.user_id
+      WHERE u.id != $1
+    `;
+    const semuaUserResult = await db.query(querySemuaUser, [userId]);
+    const semuaUser = semuaUserResult.rows;
 
-      db.query(querySemuaUser, [userId], (err, semuaUser) => {
-        if (err) return res.status(500).json({ success: false, message: 'Error ambil semua user' });
+    if (semuaUser.length === 0)
+      return res.json({ success: true, matches: [] });
 
-        if (semuaUser.length === 0) {
-          return res.json({ success: true, matches: [] });
-        }
+    // 4. Ambil jadwal semua user lain
+    const userIds = semuaUser.map(u => u.id);
+    const semuaJadwalResult = await db.query(
+      `SELECT * FROM _jadwal_kosong WHERE user_id = ANY($1)`,
+      [userIds]
+    );
+    const semuaJadwal = semuaJadwalResult.rows;
 
-        // 4. Ambil jadwal semua user lain
-        const userIds = semuaUser.map(u => u.id);
-        db.query('SELECT * FROM jadwal_kosong WHERE user_id IN (?)', [userIds], (err, semuaJadwal) => {
-          if (err) return res.status(500).json({ success: false, message: 'Error ambil jadwal user lain' });
-
-          // 5. Hitung skor matching untuk setiap user
-          const matches = semuaUser.map(userLain => {
-  const jadwalLain = semuaJadwal.filter(j => j.user_id === userLain.id);
-  const skor = hitungSkor(userSaya, userLain, jadwalSaya, jadwalLain);
-  const status = getOnlineStatus(userLain.last_active);
-  return {
-    ...userLain,
-    skor,
-    persentase: skor,
-    online: status.online,
-    label:  status.label,
-  };
-});
-
-          // 6. Tampilkan SEMUA user, urutkan dari skor tertinggi
-          // Tidak ada filter skor > 0 agar semua user lain tetap muncul
-          const hasil = matches.sort((a, b) => b.skor - a.skor);
-
-          res.json({ success: true, matches: hasil });
-        });
-      });
+    // 5. Hitung skor matching untuk setiap user
+    const matches = semuaUser.map(userLain => {
+      const jadwalLain = semuaJadwal.filter(j => j.user_id === userLain.id);
+      const skor = hitungSkor(userSaya, userLain, jadwalSaya, jadwalLain);
+      const status = getOnlineStatus(userLain.last_active);
+      return {
+        ...userLain,
+        skor,
+        persentase: skor,
+        online: status.online,
+        label:  status.label,
+      };
     });
-  });
+
+    // 6. Urutkan dari skor tertinggi
+    const hasil = matches.sort((a, b) => b.skor - a.skor);
+
+    res.json({ success: true, matches: hasil });
+
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Database error', error: err.message });
+  }
 });
 
 module.exports = router;
