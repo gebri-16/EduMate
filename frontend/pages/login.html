@@ -689,7 +689,7 @@
           </p>
         </div>
 
-        <a href="/api/auth/google?prompt=select_account" class="btn-google">
+        <a href="https://edu-mate-kappa.vercel.app/api/auth/google?prompt=select_account" class="btn-google">
           <svg
             class="google-icon"
             viewBox="0 0 24 24"
@@ -921,7 +921,7 @@
       // ===== LOAD STATS DARI DATABASE =====
       async function loadStats() {
         try {
-          const res = await fetch("/api/auth/stats");
+          const res = await fetch("https://edu-mate-kappa.vercel.app/api/auth/stats");
           const data = await res.json();
           if (!data.success) return;
 
