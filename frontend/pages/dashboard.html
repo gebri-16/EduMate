@@ -579,7 +579,20 @@
     .qa-icon { font-size: 15px; }
 
     @media (max-width: 768px) {
-      .content-grid { grid-template-columns: 1fr !important; }
+      .content-grid {
+        grid-template-columns: 1fr !important;
+        overflow: hidden;
+        max-width: 100%;
+      }
+      .right-col,
+      .section-card,
+      .profile-card,
+      .buddy-item,
+      .quick-actions {
+        overflow: hidden;
+        max-width: 100%;
+        width: 100%;
+      }
       .section-head {
         flex-wrap: wrap;
         gap: 10px;
