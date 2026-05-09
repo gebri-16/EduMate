@@ -789,13 +789,14 @@
       let currentUser = null;
 
       window.addEventListener("DOMContentLoaded", async () => {
-        const token = localStorage.getItem("sb_token");
-        if (!token) {
-          window.location.href = "/pages/login.html";
-          return;
-        }
-        const user = await fetchCurrentUser();
-        currentUser = user;
+  saveTokenFromURL(); // ambil token dari URL dulu sebelum cek
+  const token = localStorage.getItem("sb_token");
+  if (!token) {
+    window.location.href = "/pages/login.html";
+    return;
+  }
+  const user = await fetchCurrentUser();
+  currentUser = user;
         if (user) {
           document.getElementById("onboardNama").textContent =
             user.nama || "Nama User";
