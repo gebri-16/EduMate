@@ -173,24 +173,7 @@ router.delete('/:id', verifyToken, async (req, res) => {
   }
 });
 
-// ===== AUTO-COMPLETE SESI =====
-async function autoCompleteSesi() {
-  const query = `
-    UPDATE _sesi_belajar
-    SET status = 'selesai'
-    WHERE status = 'diterima'
-      AND (tanggal || ' ' || jam_selesai)::timestamp <= NOW()
-  `;
-  try {
-    const result = await db.query(query);
-    if (result.rowCount > 0)
-      console.log(`[AutoComplete] ${result.rowCount} sesi ditandai selesai.`);
-  } catch (err) {
-    console.error('[AutoComplete] Gagal update sesi:', err.message);
-  }
-}
 
-setInterval(autoCompleteSesi, 60_000);
-autoCompleteSesi();
+
 
 module.exports = router;
