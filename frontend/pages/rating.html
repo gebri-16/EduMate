@@ -519,22 +519,28 @@
         if (!data.success) return;
 
         const selesai = data.sesi.filter(s => s.status === 'selesai');
-        const perlu   = [];
-        for (const s of selesai) {
-          const resCheck  = await fetch(`${API}/rating/sesi/${parseInt(s.id)}`, { headers: { Authorization: `Bearer ${token}` } });
-          const checkData = await resCheck.json();
-          if (!checkData.sudahRating) {
-            const isKirim = parseInt(s.pengirim_id) === myId;
-            perlu.push({
-              sesi_id:     s.id,
-              penerima_id: isKirim ? s.penerima_id : s.pengirim_id,
-              nama:        isKirim ? s.penerima_nama : s.pengirim_nama,
-              foto:        isKirim ? s.penerima_foto : s.pengirim_foto,
-              mata_kuliah: s.mata_kuliah,
-              tanggal:     s.tanggal,
-            });
-          }
-        }
+
+const checks = await Promise.all(
+  selesai.map(s =>
+    fetch(`${API}/rating/sesi/${parseInt(s.id)}`, { headers: { Authorization: `Bearer ${token}` } })
+      .then(r => r.json())
+      .then(checkData => ({ s, sudahRating: checkData.sudahRating }))
+  )
+);
+
+const perlu = checks
+  .filter(({ sudahRating }) => !sudahRating)
+  .map(({ s }) => {
+    const isKirim = parseInt(s.pengirim_id) === myId;
+    return {
+      sesi_id:     s.id,
+      penerima_id: isKirim ? s.penerima_id : s.pengirim_id,
+      nama:        isKirim ? s.penerima_nama : s.pengirim_nama,
+      foto:        isKirim ? s.penerima_foto : s.pengirim_foto,
+      mata_kuliah: s.mata_kuliah,
+      tanggal:     s.tanggal,
+    };
+  });
 
         if (perlu.length === 0) {
           container.innerHTML = '<div class="empty-state"><div class="empty-icon">🎉</div>Semua sesi sudah direview!</div>';
