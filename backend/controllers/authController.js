@@ -56,8 +56,9 @@ exports.tokenExchange = (req, res) => {
   delete req.session.pendingToken;
   delete req.session.redirectTarget;
 
-  const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
-  const page = redirectTarget === 'dashboard' ? 'dashboard' : 'onboarding';
+  const FRONTEND_URL = (process.env.FRONTEND_URL || 'http://localhost:3000').replace(/\/$/, '');
+  const page = redirectTarget === 'dashboard' ? 'dashboard.html' : 'onboarding.html';
+  
   res.send(`
     <!DOCTYPE html>
     <html>
@@ -65,7 +66,7 @@ exports.tokenExchange = (req, res) => {
         <script>
           localStorage.removeItem('sb_token');
           localStorage.setItem('sb_token', ${JSON.stringify(token)});
-          window.location.replace('${FRONTEND_URL}https://edu-mate-fx6a.vercel.app/.html');
+          window.location.replace('${FRONTEND_URL}/pages/${page}');
         </script>
       </body>
     </html>
