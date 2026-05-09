@@ -579,19 +579,45 @@
     .qa-icon { font-size: 15px; }
 
     @media (max-width: 768px) {
+      html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+      }
+      .main {
+        margin-left: 0 !important;
+        padding: 72px 12px 24px !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+      }
       .content-grid {
         grid-template-columns: 1fr !important;
-        overflow: hidden;
-        max-width: 100%;
+        overflow: hidden !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
       }
       .right-col,
       .section-card,
       .profile-card,
       .buddy-item,
       .quick-actions {
-        overflow: hidden;
-        max-width: 100%;
-        width: 100%;
+        overflow: hidden !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+      }
+      .buddy-item {
+        flex-wrap: wrap;
+      }
+      .buddy-info,
+      .buddy-right,
+      .section-title,
+      .section-link {
+        min-width: 0 !important;
       }
       .section-head {
         flex-wrap: wrap;
