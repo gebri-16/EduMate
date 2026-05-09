@@ -1,6 +1,6 @@
 const BASE = window.location.hostname === 'localhost' 
   ? 'http://localhost:3000/api' 
-  : window.location.origin + '/api';
+  : 'https://edu-mate-kappa.vercel.app/api';
 const API_BASE = BASE + '/auth';
 const API_NOTIF = BASE + '/notifikasi';
 
