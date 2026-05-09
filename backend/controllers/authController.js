@@ -58,20 +58,12 @@ exports.tokenExchange = (req, res) => {
 
   const FRONTEND_URL = (process.env.FRONTEND_URL || 'http://localhost:3000').replace(/\/$/, '');
   const page = redirectTarget === 'dashboard' ? 'dashboard.html' : 'onboarding.html';
-  
-  res.send(`
-    <!DOCTYPE html>
-    <html>
-      <body>
-        <script>
-          localStorage.removeItem('sb_token');
-          localStorage.setItem('sb_token', ${JSON.stringify(token)});
-          window.location.replace('${FRONTEND_URL}/pages/${page}');
-        </script>
-      </body>
-    </html>
-  `);
+
+  // Kirim token via URL parameter — disimpan oleh saveTokenFromURL() di auth-client.js
+  res.redirect(`${FRONTEND_URL}/pages/${page}?token=${encodeURIComponent(token)}`);
 };
+  
+  
 
 // ==================== GET CURRENT USER ====================
 exports.getMe = async (req, res) => {
