@@ -955,39 +955,39 @@
     }
 
     initPage().then(user => {
-      if (!user) return;
-      const token = getToken();
+  if (!user) return;
+  const token = getToken();
 
-      // Header
-      const greetEl = document.getElementById("greetName");
-      if (greetEl) greetEl.textContent = user.nama?.split(" ")[0] || "kembali";
+  const greetEl = document.getElementById("greetName");
+  if (greetEl) greetEl.textContent = user.nama?.split(" ")[0] || "kembali";
 
-      // Profile card
-      const nameEl   = document.getElementById("profileName");
-      const emailEl  = document.getElementById("profileEmail");
-      const avatarEl = document.getElementById("profileAvatarLg");
-      if (nameEl)  nameEl.textContent  = user.nama  || "Nama User";
-      if (emailEl) emailEl.textContent = user.email || "";
-      if (avatarEl && user.foto) {
-        avatarEl.innerHTML = `<img src="${encodeURI(user.foto)}" referrerpolicy="no-referrer" alt="${user.nama}">`;
-      }
+  const nameEl   = document.getElementById("profileName");
+  const emailEl  = document.getElementById("profileEmail");
+  const avatarEl = document.getElementById("profileAvatarLg");
+  if (nameEl)  nameEl.textContent  = user.nama  || "Nama User";
+  if (emailEl) emailEl.textContent = user.email || "";
+  if (avatarEl && user.foto) {
+    avatarEl.innerHTML = `<img src="${encodeURI(user.foto)}" referrerpolicy="no-referrer" alt="${user.nama}">`;
+  }
 
-      // Profile tags
-      const tagsEl = document.getElementById("profileTags");
-      if (tagsEl) {
-        const tags = [];
-        if (user.gaya_belajar)    tags.push({ label: user.gaya_belajar, orange: true });
-        if (user.lokasi_belajar)  tags.push({ label: user.lokasi_belajar, orange: false });
-        if (user.tingkat_kemampuan) tags.push({ label: user.tingkat_kemampuan, orange: false });
-        tagsEl.innerHTML = tags.map(t =>
-          `<span class="ptag${t.orange ? ' orange' : ''}">${t.label}</span>`
-        ).join('');
-      }
+  const tagsEl = document.getElementById("profileTags");
+  if (tagsEl) {
+    const tags = [];
+    if (user.gaya_belajar)      tags.push({ label: user.gaya_belajar, orange: true });
+    if (user.lokasi_belajar)    tags.push({ label: user.lokasi_belajar, orange: false });
+    if (user.tingkat_kemampuan) tags.push({ label: user.tingkat_kemampuan, orange: false });
+    tagsEl.innerHTML = tags.map(t =>
+      `<span class="ptag${t.orange ? ' orange' : ''}">${t.label}</span>`
+    ).join('');
+  }
 
-      loadStats(token);
-      loadMatching(token);
-      loadNotifikasi(token);
-    });
+  // Semua fetch jalan BERSAMAAN
+  Promise.all([
+    loadStats(token),
+    loadMatching(token),
+    loadNotifikasi(token)
+  ]);
+});
   </script>
 </body>
 </html>

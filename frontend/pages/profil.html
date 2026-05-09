@@ -615,9 +615,10 @@
           const [d1, d2, d3] = await Promise.all([r1.json(), r2.json(), r3.json()]);
 
           if (d1.success && d2.success) {
-            showToast("Profil berhasil disimpan! ✅", "success");
-            setTimeout(() => location.reload(), 1200);
-          } else {
+  showToast("Profil berhasil disimpan! ✅", "success");
+  sessionStorage.removeItem('sb_user'); // hapus cache agar data terbaru ke-fetch
+  setTimeout(() => location.reload(), 1200);
+} else {
             showToast("Gagal menyimpan: " + (d1.message || d2.message), "error");
           }
         } catch (err) {

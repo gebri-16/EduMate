@@ -94,6 +94,10 @@ function showToast(message, type = 'success', duration = 3000) {
 // ==================== FETCH USER ====================
 
 async function fetchCurrentUser() {
+  // Cek cache dulu
+  const cached = sessionStorage.getItem('sb_user');
+  if (cached) return JSON.parse(cached);
+
   const token = getToken();
   if (!token) return null;
   try {
@@ -108,6 +112,11 @@ async function fetchCurrentUser() {
     }
     if (!res.ok) return null;
     const data = await res.json();
+
+    // Simpan ke cache selama 2 menit
+    sessionStorage.setItem('sb_user', JSON.stringify(data.user));
+    setTimeout(() => sessionStorage.removeItem('sb_user'), 120000);
+
     return data.user;
   } catch (err) {
     console.error('Gagal fetch user:', err);
