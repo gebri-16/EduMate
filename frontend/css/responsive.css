@@ -1,11 +1,11 @@
 /* ============================================
-   EDUMATE — RESPONSIVE CSS
+   EDUMATE — RESPONSIVE CSS (Colorful Theme)
    ============================================ */
 
 /* ===== TABLET ===== */
 @media (max-width: 1024px) {
   :root {
-    --sidebar-width: 200px;
+    --sidebar-width: 210px;
   }
   .main {
     padding: 24px 24px;
@@ -29,14 +29,16 @@
   body {
     overflow-x: hidden !important;
     width: 100% !important;
+    background: #f0f4ff !important;
   }
 
   /* --- Sidebar --- */
   .sidebar {
     transform: translateX(-100%);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
     z-index: 201 !important;
-    width: 260px !important;
+    width: 270px !important;
+    box-shadow: 8px 0 32px rgba(0,0,0,0.12) !important;
   }
   .sidebar.open {
     transform: translateX(0);
@@ -46,7 +48,8 @@
     display: block !important;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(10,10,10,0.4);
+    backdrop-filter: blur(4px);
     z-index: 200;
     pointer-events: none;
     opacity: 0;
@@ -60,7 +63,7 @@
   /* --- Main --- */
   .main {
     margin-left: 0 !important;
-    padding: 72px 12px 24px !important;
+    padding: 72px 14px 32px !important;
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
@@ -73,17 +76,15 @@
   .mobile-topbar {
     display: flex !important;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 56px;
+    top: 0; left: 0; right: 0;
+    height: 58px;
     background: var(--white);
     border-bottom: 1px solid var(--gray-200);
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;
     z-index: 202;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
   }
   .mobile-topbar-brand {
     display: flex;
@@ -101,11 +102,10 @@
   }
 
   .btn-hamburger {
-    width: 36px;
-    height: 36px;
-    background: var(--gray-100);
-    border: none;
-    border-radius: 9px;
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, #fff4ed, #ede9fe);
+    border: 1.5px solid rgba(139,92,246,0.15);
+    border-radius: 10px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -113,75 +113,55 @@
     justify-content: center;
     gap: 4px;
     padding: 8px;
+    transition: all 0.2s;
+  }
+  .btn-hamburger:hover {
+    background: linear-gradient(135deg, #fed7aa, #ddd6fe);
   }
   .btn-hamburger span {
     display: block;
-    width: 18px;
-    height: 2px;
+    width: 18px; height: 2px;
     background: var(--black);
     border-radius: 2px;
     transition: all 0.25s ease;
   }
-  .btn-hamburger.open span:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
-  }
-  .btn-hamburger.open span:nth-child(2) {
-    opacity: 0;
-  }
-  .btn-hamburger.open span:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
-  }
+  .btn-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .btn-hamburger.open span:nth-child(2) { opacity: 0; }
+  .btn-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
   /* --- Page Header --- */
   .page-header {
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     margin-bottom: 20px;
+    padding: 20px 18px !important;
+    border-radius: 14px !important;
   }
   .page-header h1,
   .page-header-left h1 {
     font-size: 24px !important;
   }
-  .date-badge {
+  .date-chip {
     align-self: flex-start;
   }
 
   /* --- Stats --- */
   .stats-row {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px;
+    gap: 10px;
     margin-bottom: 20px;
   }
   .stat-card {
-    padding: 14px 12px;
+    padding: 16px 14px;
     min-width: 0;
-    overflow: visible;
     box-sizing: border-box;
+    border-radius: 14px !important;
   }
-  .stat-top {
-    margin-bottom: 10px;
-  }
-  .stat-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 14px;
-    flex-shrink: 0;
-  }
-  .stat-trend {
-    font-size: 10px;
-    padding: 2px 5px;
-  }
-  .stat-value {
-    font-size: 26px !important;
-    letter-spacing: -1px;
-    margin-bottom: 4px;
-  }
-  .stat-label {
-    font-size: 11px;
-    line-height: 1.35;
-    word-break: break-word;
-    white-space: normal;
-  }
+  .stat-top { margin-bottom: 10px; }
+  .stat-icon { width: 30px; height: 30px; font-size: 14px; flex-shrink: 0; }
+  .stat-trend { font-size: 9.5px; padding: 2px 6px; }
+  .stat-value { font-size: 28px !important; letter-spacing: -1px; margin-bottom: 4px; }
+  .stat-label { font-size: 10.5px; line-height: 1.4; word-break: break-word; white-space: normal; }
 
   /* --- Content Grid --- */
   .content-grid {
@@ -196,110 +176,54 @@
 
   /* --- Section Card --- */
   .section-card {
-    border-radius: 12px;
+    border-radius: 14px !important;
     width: 100% !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
   }
-  .section-head {
-    padding: 14px 16px !important;
-  }
-  .section-link {
-    font-size: 11px !important;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
+  .section-head { padding: 14px 16px !important; }
+  .section-link { font-size: 11px !important; white-space: nowrap; flex-shrink: 0; padding: 3px 8px !important; }
 
   /* --- Profile Card --- */
   .profile-card {
     width: 100% !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
+    border-radius: 14px !important;
   }
-  .profile-card-top {
-    padding: 20px 16px 16px !important;
-  }
-  .profile-card-body {
-    padding: 14px 16px !important;
-  }
+  .profile-card-top { padding: 20px 16px 16px !important; }
+  .profile-card-body { padding: 14px 16px !important; }
 
   /* --- Quick Actions --- */
   .quick-actions {
     grid-template-columns: 1fr !important;
     padding: 12px 14px !important;
+    gap: 8px !important;
   }
+  .qa-btn { border-radius: 10px !important; }
 
   /* --- Buddy --- */
-  .buddy-item {
-    padding: 10px 14px;
-    gap: 8px;
-  }
-  .buddy-info {
-    min-width: 0;
-    flex: 1;
-  }
-  .buddy-right {
-    gap: 6px;
-    flex-shrink: 0;
-  }
-  .btn-invite {
-    padding: 6px 10px;
-    font-size: 11px;
-    white-space: nowrap;
-  }
-  .match-pill {
-    font-size: 10px;
-    padding: 3px 7px;
-    white-space: nowrap;
-  }
-  .buddy-name {
-    font-size: 12.5px;
-  }
-  .buddy-meta {
-    font-size: 10.5px;
-  }
-  .buddy-grid {
-    grid-template-columns: 1fr !important;
-  }
-  .buddy-card {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+  .buddy-item { padding: 10px 14px; gap: 8px; }
+  .buddy-info { min-width: 0; flex: 1; }
+  .buddy-right { gap: 6px; flex-shrink: 0; }
+  .btn-invite { padding: 6px 10px; font-size: 11px; white-space: nowrap; border-radius: 7px !important; }
+  .match-pill { font-size: 10px; padding: 2px 8px; white-space: nowrap; }
+  .buddy-name { font-size: 12.5px; }
+  .buddy-meta { font-size: 10.5px; }
+  .buddy-grid { grid-template-columns: 1fr !important; }
+  .buddy-card { flex-wrap: wrap; gap: 10px; }
 
   /* --- Filters --- */
-  .filter-bar {
-    flex-direction: column !important;
-    gap: 10px !important;
-  }
-  .filter-grid {
-    grid-template-columns: 1fr !important;
-  }
-  .filter-input,
-  .filter-select,
-  .sort-select {
-    width: 100% !important;
-  }
+  .filter-bar { flex-direction: column !important; gap: 10px !important; }
+  .filter-grid { grid-template-columns: 1fr !important; }
+  .filter-input, .filter-select, .sort-select { width: 100% !important; }
 
   /* --- Profil & Form --- */
-  .profil-layout,
-  .profil-grid {
-    grid-template-columns: 1fr !important;
-  }
-  .profil-layout > div:first-child {
-    position: static !important;
-    top: auto !important;
-  }
-  .form-grid,
-  .form-row {
-    grid-template-columns: 1fr !important;
-  }
-  .jadwal-grid,
-  .jadwal-layout {
-    grid-template-columns: 1fr !important;
-  }
-  .jadwal-checkbox-grid {
-    grid-template-columns: 1fr !important;
-  }
+  .profil-layout, .profil-grid { grid-template-columns: 1fr !important; }
+  .profil-layout > div:first-child { position: static !important; top: auto !important; }
+  .form-grid, .form-row { grid-template-columns: 1fr !important; }
+  .jadwal-grid, .jadwal-layout { grid-template-columns: 1fr !important; }
+  .jadwal-checkbox-grid { grid-template-columns: 1fr !important; }
 
   /* --- Sesi Card --- */
   .sesi-card {
@@ -330,34 +254,16 @@
     padding: 8px 10px;
     text-align: center;
     box-sizing: border-box;
+    border-radius: 8px !important;
   }
-  .sesi-body {
-    padding: 12px 14px;
-  }
-  .sesi-date {
-    padding: 12px 8px;
-  }
-  .sesi-day {
-    font-size: 22px;
-  }
-  .sesi-month {
-    font-size: 9px;
-  }
-  .sesi-matkul {
-    font-size: 15px;
-  }
-  .sesi-top {
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 6px;
-  }
-  .sesi-meta {
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-  .sesi-meta-item {
-    font-size: 11.5px;
-  }
+  .sesi-body { padding: 12px 14px; }
+  .sesi-date { padding: 12px 8px; }
+  .sesi-day { font-size: 22px; }
+  .sesi-month { font-size: 9px; }
+  .sesi-matkul { font-size: 15px; }
+  .sesi-top { flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+  .sesi-meta { gap: 8px; margin-bottom: 8px; }
+  .sesi-meta-item { font-size: 11.5px; }
 
   /* --- Tabs --- */
   .tabs-wrap {
@@ -371,9 +277,7 @@
     flex-wrap: nowrap !important;
     box-sizing: border-box !important;
   }
-  .tabs-wrap::-webkit-scrollbar {
-    display: none !important;
-  }
+  .tabs-wrap::-webkit-scrollbar { display: none !important; }
   .tabs-wrap .tab {
     flex-shrink: 0 !important;
     white-space: nowrap !important;
@@ -382,102 +286,50 @@
   }
 
   /* --- Kalender --- */
-  .calendar-wrap {
-    padding: 0 8px 16px;
-  }
-  .calendar-grid {
-    grid-template-columns: 36px repeat(7, 1fr) !important;
-  }
-  .cal-header {
-    padding: 6px 2px;
-  }
-  .cal-day-name {
-    font-size: 8px;
-    letter-spacing: 0;
-  }
-  .cal-day-num {
-    font-size: 12px;
-    margin-top: 2px;
-  }
-  .cal-day-num.today {
-    width: 20px;
-    height: 20px;
-    font-size: 11px;
-  }
-  .time-label {
-    padding: 0 3px;
-  }
-  .time-text {
-    font-size: 8px;
-    right: 3px;
-  }
-  .cal-cell {
-    height: 44px;
-    overflow: visible;
-  }
+  .calendar-wrap { padding: 0 8px 16px; }
+  .calendar-grid { grid-template-columns: 36px repeat(7, 1fr) !important; }
+  .cal-header { padding: 6px 2px; }
+  .cal-day-name { font-size: 8px; letter-spacing: 0; }
+  .cal-day-num { font-size: 12px; margin-top: 2px; }
+  .cal-day-num.today { width: 20px; height: 20px; font-size: 11px; }
+  .time-label { padding: 0 3px; }
+  .time-text { font-size: 8px; right: 3px; }
+  .cal-cell { height: 44px; overflow: visible; }
   .cal-event {
     font-size: 7px !important;
     padding: 2px 3px !important;
-    top: 2px;
-    left: 2px;
-    right: 2px;
+    top: 2px; left: 2px; right: 2px;
     white-space: normal !important;
     word-break: break-word !important;
     overflow: hidden !important;
     line-height: 1.2;
   }
-  .card-head {
-    padding: 12px 14px;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .card-title {
-    font-size: 12.5px;
-  }
-  .week-label {
-    font-size: 11px;
-    min-width: 100px;
-    text-align: center;
-  }
-  .week-nav-btn {
-    width: 24px;
-    height: 24px;
-    font-size: 12px;
-  }
-  .calendar-legend {
-    padding: 10px 14px;
-    gap: 12px;
-  }
-  .legend-item {
-    font-size: 10px;
-  }
+  .card-head { padding: 12px 14px; flex-wrap: wrap; gap: 8px; }
+  .card-title { font-size: 12.5px; }
+  .week-label { font-size: 11px; min-width: 100px; text-align: center; }
+  .week-nav-btn { width: 24px; height: 24px; font-size: 12px; }
+  .calendar-legend { padding: 10px 14px; gap: 12px; }
+  .legend-item { font-size: 10px; }
 
   /* --- Rating & Modal --- */
-  .rating-layout {
-    grid-template-columns: 1fr !important;
-  }
-  .modal-box,
-  .modal {
+  .rating-layout { grid-template-columns: 1fr !important; }
+  .modal-box, .modal {
     width: 95% !important;
     max-width: 95% !important;
     margin: 0 auto;
     max-height: 85vh;
     overflow-y: auto;
+    border-radius: 16px !important;
   }
 
-  .notif-list {
-    border-radius: 12px;
-  }
+  .notif-list { border-radius: 14px; }
 }
 
 /* Desktop: sembunyikan topbar */
-.mobile-topbar {
-  display: none;
-}
+.mobile-topbar { display: none; }
 
 .nav-icon svg {
-  width: 16px;
-  height: 16px;
+  width: 16px; height: 16px;
   stroke-width: 1.75;
   display: block;
 }
